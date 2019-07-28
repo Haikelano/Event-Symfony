@@ -20,6 +20,13 @@ class ImageCountry
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idimageCountry;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idimageCountry;
+    }
 
     /**
      * @var string

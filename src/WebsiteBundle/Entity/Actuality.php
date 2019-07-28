@@ -45,6 +45,13 @@ class Actuality
     /**
      * @return int
      */
+    public function getId()
+    {
+        return $this->idactuality;
+    }
+    /**
+     * @return int
+     */
     public function getIdactuality()
     {
         return $this->idactuality;

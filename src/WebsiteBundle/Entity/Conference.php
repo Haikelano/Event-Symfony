@@ -20,6 +20,13 @@ class Conference
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idconference;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idconference;
+    }
 
     /**
      * @var string

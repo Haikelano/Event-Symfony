@@ -20,6 +20,13 @@ class EventGallery
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $ideventGallery;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->ideventGallery;
+    }
 
     /**
      * @var string

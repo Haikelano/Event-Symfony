@@ -20,6 +20,13 @@ class Planning
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idplanning;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idplanning;
+    }
 
     /**
      * @var string

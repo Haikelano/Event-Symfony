@@ -20,6 +20,13 @@ class ImageSpeaker
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idimageSpeaker;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idimageSpeaker;
+    }
 
     /**
      * @var string

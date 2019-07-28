@@ -20,6 +20,13 @@ class Tag
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idtag;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idtag;
+    }
 
     /**
      * @var string

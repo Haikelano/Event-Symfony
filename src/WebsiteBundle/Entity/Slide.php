@@ -20,6 +20,13 @@ class Slide
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idslide;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idslide;
+    }
 
     /**
      * @var string

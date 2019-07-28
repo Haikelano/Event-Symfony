@@ -20,6 +20,13 @@ class Country
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idcountry;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idcountry;
+    }
 
     /**
      * @var string

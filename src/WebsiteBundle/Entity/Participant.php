@@ -20,6 +20,13 @@ class Participant
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idparticipant;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idparticipant;
+    }
 
     /**
      * @var string

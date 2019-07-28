@@ -20,6 +20,13 @@ class ImageSponsor
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idimageSponsor;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idimageSponsor;
+    }
 
     /**
      * @var string

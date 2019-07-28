@@ -20,6 +20,13 @@ class ImageActuality
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idimageActuality;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idimageActuality;
+    }
 
     /**
      * @var string

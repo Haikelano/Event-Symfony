@@ -20,6 +20,13 @@ class Ticket
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idticket;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idticket;
+    }
 
     /**
      * @var string

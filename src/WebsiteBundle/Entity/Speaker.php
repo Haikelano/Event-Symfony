@@ -20,6 +20,13 @@ class Speaker
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idspeaker;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idspeaker;
+    }
 
     /**
      * @var string

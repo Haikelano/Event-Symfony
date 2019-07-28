@@ -20,6 +20,13 @@ class Newsletter
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idnewsletter;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idnewsletter;
+    }
 
     /**
      * @var string

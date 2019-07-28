@@ -20,6 +20,13 @@ class ImageHotel
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idimageHotel;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idimageHotel;
+    }
 
     /**
      * @var string

@@ -20,6 +20,13 @@ class Contact
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idcontact;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idcontact;
+    }
 
     /**
      * @var string

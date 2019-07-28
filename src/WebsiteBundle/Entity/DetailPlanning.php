@@ -20,6 +20,13 @@ class DetailPlanning
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $iddetailPlanning;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->iddetailPlanning;
+    }
 
     /**
      * @var string

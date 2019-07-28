@@ -20,6 +20,13 @@ class Sponsor
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idsponsor;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idsponsor;
+    }
 
     /**
      * @var string

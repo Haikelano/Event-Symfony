@@ -20,6 +20,13 @@ class Event
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idevent;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idevent;
+    }
 
     /**
      * @var string

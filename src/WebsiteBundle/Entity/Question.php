@@ -20,6 +20,13 @@ class Question
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idquestion;
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->idquestion;
+    }
 
     /**
      * @var string
