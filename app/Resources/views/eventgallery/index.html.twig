@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>EventGallery list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ideventgallery</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Pathimage</th>
+                <th>Iamgeprincipal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eventGallery in eventGalleries %}
+            <tr>
+                <td><a href="{{ path('eventgallery_show', { 'id': eventGallery.ideventGallery }) }}">{{ eventGallery.ideventGallery }}</a></td>
+                <td>{{ eventGallery.location }}</td>
+                <td>{{ eventGallery.name }}</td>
+                <td>{{ eventGallery.description }}</td>
+                <td>{{ eventGallery.pathimage }}</td>
+                <td>{% if eventGallery.iamgePrincipal %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('eventgallery_show', { 'id': eventGallery.ideventGallery }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('eventgallery_edit', { 'id': eventGallery.ideventGallery }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('eventgallery_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

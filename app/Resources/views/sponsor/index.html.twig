@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sponsor list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idsponsor</th>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Type</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sponsor in sponsors %}
+            <tr>
+                <td><a href="{{ path('sponsor_show', { 'id': sponsor.idsponsor }) }}">{{ sponsor.idsponsor }}</a></td>
+                <td>{{ sponsor.name }}</td>
+                <td>{{ sponsor.website }}</td>
+                <td>{{ sponsor.type }}</td>
+                <td>{{ sponsor.contact }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sponsor_show', { 'id': sponsor.idsponsor }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sponsor_edit', { 'id': sponsor.idsponsor }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sponsor_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageCountry list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimagecountry</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Imageprincipal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageCountry in imageCountries %}
+            <tr>
+                <td><a href="{{ path('imagecountry_show', { 'id': imageCountry.idimageCountry }) }}">{{ imageCountry.idimageCountry }}</a></td>
+                <td>{{ imageCountry.name }}</td>
+                <td>{{ imageCountry.link }}</td>
+                <td>{% if imageCountry.imagePrincipal %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagecountry_show', { 'id': imageCountry.idimageCountry }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagecountry_edit', { 'id': imageCountry.idimageCountry }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagecountry_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

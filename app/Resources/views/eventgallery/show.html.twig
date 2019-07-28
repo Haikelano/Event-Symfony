@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>EventGallery</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Ideventgallery</th>
+                <td>{{ eventGallery.ideventGallery }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ eventGallery.location }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ eventGallery.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ eventGallery.description }}</td>
+            </tr>
+            <tr>
+                <th>Pathimage</th>
+                <td>{{ eventGallery.pathimage }}</td>
+            </tr>
+            <tr>
+                <th>Iamgeprincipal</th>
+                <td>{% if eventGallery.iamgePrincipal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('eventgallery_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('eventgallery_edit', { 'id': eventGallery.ideventGallery }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

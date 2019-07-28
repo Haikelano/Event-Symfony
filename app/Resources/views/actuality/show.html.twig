@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Actuality</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idactuality</th>
+                <td>{{ actuality.idactuality }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ actuality.title }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ actuality.resume }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{% if actuality.datecreate %}{{ actuality.datecreate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('actuality_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('actuality_edit', { 'id': actuality.idactuality }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

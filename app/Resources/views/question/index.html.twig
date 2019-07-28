@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Question list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idquestion</th>
+                <th>Textquestion</th>
+                <th>Createdate</th>
+                <th>Status</th>
+                <th>Textresponse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td><a href="{{ path('question_show', { 'id': question.idquestion }) }}">{{ question.idquestion }}</a></td>
+                <td>{{ question.textQuestion }}</td>
+                <td>{% if question.createdate %}{{ question.createdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ question.status }}</td>
+                <td>{{ question.textResponse }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('question_show', { 'id': question.idquestion }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('question_edit', { 'id': question.idquestion }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('question_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

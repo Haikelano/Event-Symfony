@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageCountry</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idimagecountry</th>
+                <td>{{ imageCountry.idimageCountry }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ imageCountry.name }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ imageCountry.link }}</td>
+            </tr>
+            <tr>
+                <th>Imageprincipal</th>
+                <td>{% if imageCountry.imagePrincipal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagecountry_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('imagecountry_edit', { 'id': imageCountry.idimageCountry }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

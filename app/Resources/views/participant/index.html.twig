@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Participant list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idparticipant</th>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Adress</th>
+                <th>Zipcode</th>
+                <th>Lastconnexiondate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participant in participants %}
+            <tr>
+                <td><a href="{{ path('participant_show', { 'id': participant.idparticipant }) }}">{{ participant.idparticipant }}</a></td>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.lastname }}</td>
+                <td>{{ participant.email }}</td>
+                <td>{{ participant.phone }}</td>
+                <td>{{ participant.adress }}</td>
+                <td>{{ participant.zipcode }}</td>
+                <td>{% if participant.lastconnexiondate %}{{ participant.lastconnexiondate|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('participant_show', { 'id': participant.idparticipant }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('participant_edit', { 'id': participant.idparticipant }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('participant_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

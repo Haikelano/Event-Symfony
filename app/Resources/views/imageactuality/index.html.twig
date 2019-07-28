@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageActuality list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimageactuality</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Imageprincipal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageActuality in imageActualities %}
+            <tr>
+                <td><a href="{{ path('imageactuality_show', { 'id': imageActuality.idimageActuality }) }}">{{ imageActuality.idimageActuality }}</a></td>
+                <td>{{ imageActuality.name }}</td>
+                <td>{{ imageActuality.link }}</td>
+                <td>{% if imageActuality.imagePrincipal %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imageactuality_show', { 'id': imageActuality.idimageActuality }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imageactuality_edit', { 'id': imageActuality.idimageActuality }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imageactuality_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

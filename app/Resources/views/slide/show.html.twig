@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Slide</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idslide</th>
+                <td>{{ slide.idslide }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ slide.name }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ slide.type }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ slide.title }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ slide.link }}</td>
+            </tr>
+            <tr>
+                <th>Isenable</th>
+                <td>{% if slide.isenable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('slide_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('slide_edit', { 'id': slide.idslide }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

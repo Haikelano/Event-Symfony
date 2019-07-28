@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DetailPlanning</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Iddetailplanning</th>
+                <td>{{ detailPlanning.iddetailPlanning }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ detailPlanning.time }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ detailPlanning.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ detailPlanning.description }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ detailPlanning.location }}</td>
+            </tr>
+            <tr>
+                <th>Topic</th>
+                <td>{{ detailPlanning.topic }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('detailplanning_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('detailplanning_edit', { 'id': detailPlanning.iddetailPlanning }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

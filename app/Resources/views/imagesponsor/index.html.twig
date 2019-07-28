@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageSponsor list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimagesponsor</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Imageprinciapl</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageSponsor in imageSponsors %}
+            <tr>
+                <td><a href="{{ path('imagesponsor_show', { 'id': imageSponsor.idimageSponsor }) }}">{{ imageSponsor.idimageSponsor }}</a></td>
+                <td>{{ imageSponsor.name }}</td>
+                <td>{{ imageSponsor.link }}</td>
+                <td>{% if imageSponsor.imagePrinciapl %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagesponsor_show', { 'id': imageSponsor.idimageSponsor }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagesponsor_edit', { 'id': imageSponsor.idimageSponsor }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagesponsor_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

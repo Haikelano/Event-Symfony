@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hotel list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idhotel</th>
+                <th>Name</th>
+                <th>Nbstars</th>
+                <th>Description</th>
+                <th>Distanceevent</th>
+                <th>Linkhotel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td><a href="{{ path('hotel_show', { 'id': hotel.idhotel }) }}">{{ hotel.idhotel }}</a></td>
+                <td>{{ hotel.name }}</td>
+                <td>{{ hotel.nbstars }}</td>
+                <td>{{ hotel.description }}</td>
+                <td>{{ hotel.distanceevent }}</td>
+                <td>{{ hotel.linkhotel }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('hotel_show', { 'id': hotel.idhotel }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('hotel_edit', { 'id': hotel.idhotel }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('hotel_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

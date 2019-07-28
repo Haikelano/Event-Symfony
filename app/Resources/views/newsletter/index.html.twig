@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Newsletter list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idnewsletter</th>
+                <th>Email</th>
+                <th>Istreated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for newsletter in newsletters %}
+            <tr>
+                <td><a href="{{ path('newsletter_show', { 'id': newsletter.idnewsletter }) }}">{{ newsletter.idnewsletter }}</a></td>
+                <td>{{ newsletter.email }}</td>
+                <td>{% if newsletter.istreated %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('newsletter_show', { 'id': newsletter.idnewsletter }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('newsletter_edit', { 'id': newsletter.idnewsletter }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('newsletter_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

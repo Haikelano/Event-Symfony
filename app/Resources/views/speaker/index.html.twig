@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Speaker list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idspeaker</th>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Mail</th>
+                <th>Adressefb</th>
+                <th>Adresseli</th>
+                <th>Adressetwi</th>
+                <th>Adressego</th>
+                <th>Description</th>
+                <th>Fonction</th>
+                <th>Abstract</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for speaker in speakers %}
+            <tr>
+                <td><a href="{{ path('speaker_show', { 'id': speaker.idspeaker }) }}">{{ speaker.idspeaker }}</a></td>
+                <td>{{ speaker.name }}</td>
+                <td>{{ speaker.lastname }}</td>
+                <td>{{ speaker.mail }}</td>
+                <td>{{ speaker.adressefb }}</td>
+                <td>{{ speaker.adresseli }}</td>
+                <td>{{ speaker.adressetwi }}</td>
+                <td>{{ speaker.adressego }}</td>
+                <td>{{ speaker.description }}</td>
+                <td>{{ speaker.fonction }}</td>
+                <td>{{ speaker.abstract }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('speaker_show', { 'id': speaker.idspeaker }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('speaker_edit', { 'id': speaker.idspeaker }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('speaker_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

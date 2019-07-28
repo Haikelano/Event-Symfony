@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DetailPlanning list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Iddetailplanning</th>
+                <th>Time</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Topic</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detailPlanning in detailPlannings %}
+            <tr>
+                <td><a href="{{ path('detailplanning_show', { 'id': detailPlanning.iddetailPlanning }) }}">{{ detailPlanning.iddetailPlanning }}</a></td>
+                <td>{{ detailPlanning.time }}</td>
+                <td>{{ detailPlanning.title }}</td>
+                <td>{{ detailPlanning.description }}</td>
+                <td>{{ detailPlanning.location }}</td>
+                <td>{{ detailPlanning.topic }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('detailplanning_show', { 'id': detailPlanning.iddetailPlanning }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('detailplanning_edit', { 'id': detailPlanning.iddetailPlanning }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('detailplanning_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

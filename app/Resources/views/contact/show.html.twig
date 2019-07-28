@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Contact</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idcontact</th>
+                <td>{{ contact.idcontact }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ contact.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contact.email }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ contact.subject }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ contact.message }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if contact.date %}{{ contact.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ contact.phone }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ contact.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Civility</th>
+                <td>{{ contact.civility }}</td>
+            </tr>
+            <tr>
+                <th>Istreated</th>
+                <td>{% if contact.istreated %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Companyadress</th>
+                <td>{{ contact.companyadress }}</td>
+            </tr>
+            <tr>
+                <th>Companyphone</th>
+                <td>{{ contact.companyphone }}</td>
+            </tr>
+            <tr>
+                <th>Companymail</th>
+                <td>{{ contact.companymail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contact_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('contact_edit', { 'id': contact.idcontact }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

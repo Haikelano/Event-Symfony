@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Speaker</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idspeaker</th>
+                <td>{{ speaker.idspeaker }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ speaker.name }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ speaker.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ speaker.mail }}</td>
+            </tr>
+            <tr>
+                <th>Adressefb</th>
+                <td>{{ speaker.adressefb }}</td>
+            </tr>
+            <tr>
+                <th>Adresseli</th>
+                <td>{{ speaker.adresseli }}</td>
+            </tr>
+            <tr>
+                <th>Adressetwi</th>
+                <td>{{ speaker.adressetwi }}</td>
+            </tr>
+            <tr>
+                <th>Adressego</th>
+                <td>{{ speaker.adressego }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ speaker.description }}</td>
+            </tr>
+            <tr>
+                <th>Fonction</th>
+                <td>{{ speaker.fonction }}</td>
+            </tr>
+            <tr>
+                <th>Abstract</th>
+                <td>{{ speaker.abstract }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('speaker_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('speaker_edit', { 'id': speaker.idspeaker }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

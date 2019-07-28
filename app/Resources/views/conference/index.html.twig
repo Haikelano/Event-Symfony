@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Conference list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idconference</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Job</th>
+                <th>Company</th>
+                <th>Context</th>
+                <th>Startdate</th>
+                <th>Finishdate</th>
+                <th>Description</th>
+                <th>Resume</th>
+                <th>Topics</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conference in conferences %}
+            <tr>
+                <td><a href="{{ path('conference_show', { 'id': conference.idconference }) }}">{{ conference.idconference }}</a></td>
+                <td>{{ conference.title }}</td>
+                <td>{{ conference.text }}</td>
+                <td>{{ conference.job }}</td>
+                <td>{{ conference.company }}</td>
+                <td>{{ conference.context }}</td>
+                <td>{% if conference.startdate %}{{ conference.startdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if conference.finishdate %}{{ conference.finishdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ conference.description }}</td>
+                <td>{{ conference.resume }}</td>
+                <td>{{ conference.topics }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('conference_show', { 'id': conference.idconference }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('conference_edit', { 'id': conference.idconference }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('conference_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

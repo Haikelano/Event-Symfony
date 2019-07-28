@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageHotel list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimagehotel</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Imageprincipal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageHotel in imageHotels %}
+            <tr>
+                <td><a href="{{ path('imagehotel_show', { 'id': imageHotel.idimageHotel }) }}">{{ imageHotel.idimageHotel }}</a></td>
+                <td>{{ imageHotel.name }}</td>
+                <td>{{ imageHotel.link }}</td>
+                <td>{% if imageHotel.imagePrincipal %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagehotel_show', { 'id': imageHotel.idimageHotel }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagehotel_edit', { 'id': imageHotel.idimageHotel }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagehotel_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

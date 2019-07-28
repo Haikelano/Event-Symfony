@@ -42,5 +42,68 @@ class Actuality
      */
     private $datecreate;
 
+    /**
+     * @return int
+     */
+    public function getIdactuality()
+    {
+        return $this->idactuality;
+    }
+
+    /**
+     * @param int $idactuality
+     */
+    public function setIdactuality($idactuality)
+    {
+        $this->idactuality = $idactuality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
+    /**
+     * @param string $resume
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatecreate()
+    {
+        return $this->datecreate;
+    }
+
+    /**
+     * @param \DateTime $datecreate
+     */
+    public function setDatecreate($datecreate)
+    {
+        $this->datecreate = $datecreate;
+    }
 
 }

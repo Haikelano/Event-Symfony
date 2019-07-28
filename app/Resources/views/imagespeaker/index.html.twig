@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageSpeaker list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimagespeaker</th>
+                <th>Name</th>
+                <th>Link</th>
+                <th>Imageprincipal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageSpeaker in imageSpeakers %}
+            <tr>
+                <td><a href="{{ path('imagespeaker_show', { 'id': imageSpeaker.idimageSpeaker }) }}">{{ imageSpeaker.idimageSpeaker }}</a></td>
+                <td>{{ imageSpeaker.name }}</td>
+                <td>{{ imageSpeaker.link }}</td>
+                <td>{% if imageSpeaker.imagePrincipal %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagespeaker_show', { 'id': imageSpeaker.idimageSpeaker }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagespeaker_edit', { 'id': imageSpeaker.idimageSpeaker }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagespeaker_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

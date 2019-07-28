@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tag</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idtag</th>
+                <td>{{ tag.idtag }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ tag.name }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{% if tag.datecreate %}{{ tag.datecreate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Linktag</th>
+                <td>{{ tag.linktag }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tag_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('tag_edit', { 'id': tag.idtag }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
