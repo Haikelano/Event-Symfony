@@ -1,0 +1,84 @@
+<?php
+
+namespace WebsiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity
+ */
+class Event
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idevent", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idevent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nameevent", type="string", length=45, nullable=true)
+     */
+    private $nameevent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lieu", type="string", length=45, nullable=true)
+     */
+    private $lieu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datePeriode", type="string", length=45, nullable=true)
+     */
+    private $dateperiode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idimageP", type="integer", nullable=false)
+     */
+    private $idimagep;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startDate", type="date", nullable=true)
+     */
+    private $startdate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="endDate", type="date", nullable=true)
+     */
+    private $enddate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mapsEvent", type="string", length=200, nullable=true)
+     */
+    private $mapsevent;
+
+    /**
+     * @var \Country
+     *
+     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idcountry", referencedColumnName="idcountry")
+     * })
+     */
+    private $idcountry;
+
+
+}
