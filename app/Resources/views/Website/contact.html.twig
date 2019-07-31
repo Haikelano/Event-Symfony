@@ -1,0 +1,87 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+    <!--========== Page Banner ==========-->
+            {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+        <!--========== End page banner ==========-->
+        
+        <!--========== PAGE CONTENT ==========-->
+        <!-- Speakers -->
+        <div class="container g-padding-y-80--xs g-padding-y-80--sm">
+            <div class="row g-overflow--hidden"> 
+                <div class="col-md-5 g-full-width--xs g-margin-b-30--xs g-margin-b-0--lg">
+                    <div class="text-center">
+                    <div id="address-div">
+                        <h3 class="contact-div-title"><b class="prefix-title">{%trans%}Nos{%endtrans%} </b>{%trans%} Coordonnées{%endtrans%}</h3>
+                        <p>Imm. 47 zone d'activité Khair-Eddine, El Kram Tunis</p>
+                        <p>contact@vegagroup.com.tn</p>
+                        <p>+216 73 366 717</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12 g-margin-b-0--lg">
+           
+                    <div class="center-block g-width-100-percent--xs">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-job-titles contact-page-title"><b class="block-company-titles-prefix">{%trans%}Nous ecrire{%endtrans%} </b>  {%trans%}un{%endtrans%} {%trans%} Message{%endtrans%}</h2></div>
+
+                        <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12">
+                        <form action="{{path('vega_website_contact')}}" method="POST">
+                            {{ form_widget(form._token) }}
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    
+                                    <label for="inputEMAIL" class="reply-form-label">{% trans %}Email{% endtrans %} <span class="required-field">*</span></label>
+                                    <div class="form-group">
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control s-form-v2__input reply-form-input' ,'required':'required'}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="inputTéléphone" class="reply-form-label">{% trans %}Téléphone{% endtrans %} <span class="required-field">*</span></label>
+                                    <div class="form-group">
+                                        {{ form_widget(form.phone, {'attr': {'class': 'form-control s-form-v2__input reply-form-input','required':'required'}}) }}
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    
+                                    
+                                    <label for="inputMESSAGE" class="reply-form-label">{% trans %}Message{% endtrans %} <span class="required-field">*</span></label>
+                                    <div class="form-group">
+                                        {{ form_widget(form.message, {'attr': {'class': 'form-control s-form-v2__input g-padding-y-20--xs reply-form-textarea' ,'required':'required'}}) }}
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            {{ form_widget(form.captcha, {'attr': {'class': 'form-control s-form-v2__input reply-form-input input-contact-form'}}) }}
+                                            {{ form_errors(form.captcha)  }}
+                                        </div>
+                                    </div>
+                                    <button class="text-uppercase s-btn s-btn--primary-bg reply-btn pull-right" type="submit">{% trans %}Envoyer{% endtrans %} <i class="glyphicon glyphicon-send "> </i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                        </div>
+                        </div>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+        <!-- Google map -->
+        <div class="row" style="margin-right: 0">
+           
+            <div class="center-block g-box-shadow__dark-lightest-v1 g-width-100-percent--xs blog-div">
+                <section class="s-google-map">
+<iframe width="100%" height="100%" src="https://maps.google.com/maps?width=100%&amp;height=400&amp;hl=en&amp;coord=36.835674,10.245740&amp;q=Imm.%2047%2C%20Zone%20d'activit%C3%A9%20%20Khair-Eddine%2CKram%20Tunis%20+(Vega%20Group)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+ 
+                </section>
+            </div>
+          
+        </div>
+        <!-- End Google map -->
+        <!--========== END PAGE CONTENT ==========-->
+       
+{%endblock%}

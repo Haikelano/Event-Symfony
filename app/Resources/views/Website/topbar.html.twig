@@ -1,0 +1,93 @@
+<div class="s-header-bg-overlay js__bg-overlay">
+                <!-- Nav -->
+                <nav class="s-header__nav js__scrollbar">
+                    <div class="container-fluid">
+                        <!-- Menu List -->    
+<ul class="list-unstyled s-header__nav-menu menu-items-list"> 
+    {%for page in pages%}
+        {%if page.menuitem is not null%}
+            {%if page.name=="accueil"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items -is-active" href="{{path('vega_website_homepage')}}">{{page.menuitem|capitalize}}</a></li>
+            {%elseif page.name=="A propos"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_aboutus')}}">{{page.menuitem}}</a></li>
+            {%elseif page.name=="Groupe"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_company')}}">{{page.menuitem}}</a></li>
+            {%elseif page.name=="métier"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_job')}}">{{page.menuitem}}</a></li>
+            {%elseif page.name=="actualites"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_blog')}}">{{page.menuitem}}</a></li>
+            {%elseif page.name=="contact"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_contact')}}">{{page.menuitem}}</a></li>
+            {%elseif page.name=="event"%}
+                <li class="s-header__nav-menu-item"><a class="s-header__nav-menu-link s-header__nav-menu-link-divider menu-items" href="{{path('vega_website_event')}}">{{page.menuitem}}</a></li>
+            {%endif%}
+        {%endif%}
+    {%endfor%}
+    </ul>
+    <!-- End Menu List -->
+                    </div>
+                </nav>
+                <!-- End Nav -->
+                
+                <!-- Action -->
+                <ul id="languageTopMenu" class="list-inline s-header__action s-header__action--lb">
+                    <li class="s-header__action-item"><a class="s-header__action-link {%if  request.get('_locale') =="fr"%} -is-active{%endif%}" href="{{ path(request.get('_route'), request.get('_route_params')|merge({'_locale' : 'fr'})) }}">Fr</a></li>
+                    {#<li class="s-header__action-item"><a class="s-header__action-link {%if  request.get('_locale') =="en"%} -is-active{%endif%}"  href="{{ path(request.get('_route'), request.get('_route_params')|merge({'_locale' : 'en'})) }}">En</a></li>#}
+                </ul>
+                <!-- End Action -->
+
+                <!-- Action -->
+                <ul id="socialMediaTopMenu" class="list-inline s-header__action s-header__action--rb">
+                    {%if vegagroup.fblink %}
+                    <li class="s-header__action-item">
+                        <a class="s-header__action-link" href="{{vegagroup.fblink}}">
+                            <i class="g-padding-r-5--xs ti-facebook"></i>
+                            <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if vegagroup.twitterlink %}
+                    <li class="s-header__action-item">
+                        <a class="s-header__action-link" href="{{vegagroup.twitterlink}}">
+                            <i class="g-padding-r-5--xs ti-twitter"></i>
+                            <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if vegagroup.lilink %}
+                    <li class="s-header__action-item">
+                        <a class="s-header__action-link" href="{{vegagroup.lilink}}">
+                            <i class="g-padding-r-5--xs ti-linkedin"></i>
+                            <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if vegagroup.instalink %}
+                    <li class="s-header__action-item">
+                        <a class="s-header__action-link" href="{{vegagroup.instalink}}">
+                            <i class="g-padding-r-5--xs ti-instagram"></i>
+                            <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if vegagroup.youtubelink %}
+                    <li class="s-header__action-item">
+                        <a class="s-header__action-link" href="{{vegagroup.youtubelink}}">
+                            <i class="g-padding-r-5--xs ti-youtube"></i>
+                            <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                        </a>
+                    </li>
+                    {%endif%}
+                    {%if vegagroup.rsslink %}
+                        <li class="s-header__action-item">
+                            <a class="s-header__action-link" href="{{vegagroup.rsslink}}">
+                                <i class="g-padding-r-5--xs ti-rss-alt"></i>
+                                <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                            </a>
+                        </li>
+                    {%endif%}
+                    
+                    
+                </ul>
+                <!-- End Action -->
+            </div>

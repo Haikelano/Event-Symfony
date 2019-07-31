@@ -1,0 +1,90 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+    <!--========== Page Banner ==========-->
+            {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+        <!--========== End page banner ==========-->
+        <!--========== PAGE CONTENT ==========-->
+        <div id="jobsLinks" class="container">
+            <div id="ourJobs" class="row g-margin-b-20--xs"> 
+                <div class="col-md-12"> 
+                {%for job in jobs%}
+                    <a href="#job-div-{{job.id}}">                    
+                        <div class="col-md-3 block-job ">
+                            <div class="col-md-4 left-block-job">
+                                <img src="{{asset("webFiles/job/"~job.id~"/"~job.icon)}}" alt="{{job.iconalt}}"/>
+                            </div>
+                            <div class="col-md-8 right-block-job">
+                                <b>{{job.title|raw}}</b> 
+                            </div>
+                        </div>
+                    </a>
+                {%endfor%}
+                </div>
+                
+            </div>
+        </div>
+                
+        <div class="g-promo-section">            
+            <div id="jobsDivForWeb" class="row" style="margin-right: 0">
+                {%for job in jobs%}
+                    {%if loop.index is not divisibleby(2)%}
+                        <span class="anchor"  id="job-div-{{job.id}}"></span>
+                        <div class="row" style="margin-right: 0">
+                            <div class="col-md-6 job-presentation-div">
+                                <div class="col-md-12">
+                                    <div class="row"><h2 class="block-job-titles " style="float: left">{{job.title|raw}}</h2></div>
+
+                                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                                </div>                        
+                                <div class="block-company-text">
+                                    {{job.text|raw}}
+                                </div>                        
+                            </div>
+                            <div class="col-md-6 job-image-div" style="background: url('{{asset("webFiles/job/"~job.id~"/"~job.image)}}');">
+                            </div>
+                        </div>
+                    {%else%}
+                        <span class="anchor"  id="job-div-{{job.id}}"></span>
+                        <div  class="row" style="margin-right: 0">
+                            <div class="col-md-6 job-image-div" style="background: url('{{asset("webFiles/job/"~job.id~"/"~job.image)}}');">
+                            </div>
+                            <div class="col-md-6 job-presentation-div">
+                                <div class="col-md-12">
+                                    <div class="row"><h2 class="block-job-titles" style="float: left">{{job.title|raw}}</h2></div>
+
+                                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                                </div>                        
+                                <div class="block-company-text">
+                                  {{job.text|raw}}
+                                </div>                        
+                            </div>
+                        </div>
+                    {%endif%}
+                {%endfor%}               
+            </div>
+            <div id="jobsDivForMobile" class="row" style="margin-right: 0">
+                {%for job in jobs%}                    
+                    <span class="anchor"  id="job-div-{{job.id}}"></span>
+                    <div class="row" style="margin-right: 0">
+                        <div class="col-md-6 job-presentation-div">
+                            <div class="col-md-12">
+                                <div class="row"><h2 class="block-job-titles " style="float: left">{{job.title|raw}}</h2></div>
+
+                                <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                            </div>                        
+                            <div class="block-company-text">
+                                {{job.text|raw}}
+                            </div>                        
+                        </div>
+                        <div class="col-md-6 job-image-div" style="background: url('{{asset("webFiles/job/"~job.id~"/"~job.image)}}');">
+                        </div>
+                    </div>                    
+                {%endfor%}               
+            </div>
+        </div>
+      
+     
+                        
+      
+    <!--========== END PAGE CONTENT ==========-->
+{%endblock%}

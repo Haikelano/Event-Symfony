@@ -1,0 +1,134 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+    <!--========== Page Banner ==========-->
+    {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+    <!--========== End page banner ==========-->
+    <!--========== PAGE CONTENT ==========-->
+    <!-- Culture -->
+    <div class="g-promo-section">
+        <div class="row" style="margin-right: 0">
+            <div id="about-presentation-image" class="col-md-6 g-margin-b-0--lg" style="background: url('{{(asset('webFiles/about/'~vegagroup.image))}}');">
+            </div>
+            <div class="col-md-6 presentation-about-div">
+                <div class="col-md-12">
+                    <div class="row"><h2 class="block-titles block-titles-prefix"  style="float: left">{%trans%}Presentation{%endtrans%}</h2></div>
+
+                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>           
+                </div>
+
+                <div class="block-home-text">
+                    {{vegagroup.aboutus|raw}}
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div id="approachContainer" class="container padding-top-50">
+        <h2 class="block-titles"><b class="block-titles-prefix">{%trans%}Notre{%endtrans%} </b>{%trans%} Approche {%endtrans%}</h2>
+        <hr class="line-title"/>
+        {%for block in blocks %}
+            <div class="col-md-4 col-sm-12 block-home block-about">
+                <div class="clearfix">                        
+                    <div class="g-media__body g-padding-x-20--xs">
+                        <h3 class="block-home-title">{{block.title}}</h3>
+                        <div class="g-margin-b-0--xs block-home-text">
+                            <center><img class="img-block" src="{{asset('webFiles/block/'~block.getId()~"/"~block.image)}}" alt="{{block.alt}}"></center>
+                            <br>
+                            {{block.text|raw}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+
+    <!-- // end row  -->
+</div>
+<div class="container">
+    <h2 class="block-titles"><b class="block-titles-prefix">{%trans%}Notre{%endtrans%}</b> {%trans%}Equipe{%endtrans%}</h2>
+    <hr class="line-title"/>
+    <div class="row">
+        <div class="col-md-12 first-member-div">
+            
+            {% for i in 0..2 %}
+                <div class="col-md-3 col-sm-6 member-div  fst-member-div">
+                    <div class="member-name">{{members[i].name}}</div>
+                    <div class="member-job">{{members[i].profession}}</div>
+                </div>
+            {%endfor%}
+        </div>
+        <div class="col-md-12">
+            {% for i in 3..members|length-1 %}
+                <div class="col-md-3 col-sm-6 member-div">
+                    <div class="member-name">{{members[i].name}}</div>
+                    <div class="member-job">{{members[i].profession}}</div>
+                </div>
+            {%endfor%}
+        </div>
+    </div>          
+</div>        
+<div id="chairman" class="container padding-top-50">
+    <h2 class="block-titles"><b class="block-titles-prefix">{%trans%}Mot du {%endtrans%}</b> {%trans%}Chairman{%endtrans%}</h2>
+    <hr class="line-title"/>
+    <div class="row g-margin-b-60--xs g-margin-b-70--md">
+        <div class="col-md-4">
+            <img class="img-responsive g-width-100-percent--xs" src="{{asset('webFiles/team/chairman.jpeg')}}" alt="Image">
+
+
+        </div>
+        <div class="col-md-8 speech">
+            <p>
+                {%trans%}L'avenir de la Tunisie s'inscrirait en lettres d'or sur sa capacité à investir dans les nouvelles technologies, l'innovation, la recherche et le développement.{% endtrans %} {% trans %} Disposant d'un formidable capital humain et d'une position géographique exceptionnelle, notre pays possède les ingrédients nécessaires à sa réussite et à retrouver sa place dans un monde en perpétuelle transformation. {% endtrans %}
+                {% trans %} En créant {% endtrans %} <b>VEGA GROUP</b>, {% trans %}notre motivation première consiste à apporter notre modeste contribution à la construction d'un édifice national fondé sur la science, la connaissance et l'innovation.{% endtrans %} {% trans %} Notre conviction est qu'en édifiant un écosystème porteur, nos jeunes collaborateurs seraient à même de tirer le meilleur d'eux-mêmes et de démontrer ce dont ils sont capables.{% endtrans %} {% trans %}Notre Groupe inscrit ses activités dans la production et la promotion d'une large gamme de produits et services informatiques allant du montage et de la commercialisation des produits {% endtrans %} <b>high-tech</b> {% trans %} à l'offre de solutions logicielles spécifiques aux entreprises Tunisiennes et étrangères.{% endtrans %} {% trans %}Nous nous efforçons d'offrir à nos clients la gamme la plus large de produits et de services technologiques de très haute qualité mais à des prix abordables. C'est ainsi que nous pensons pouvoir contribuer à mettre la technologie au service de la société. Nourrissant l'ambition d'optimiser le contenu Tunisien de l'ensemble de nos produits, nous avons érigé une filiale R&D qui a déjà à son actif un ensemble d'innovations développées totalement in-house. L'innovation est, et restera, le principal leitmotiv de nos actions. Notre ambition est qu'en misant sur notre capital humain et en inscrivant notre action dans le cutting-edge du progrès technologique nous émergerons, dans le temps, en tant que groupe leader dans son domaine aussi bien en Tunisie qu'au Maghreb, en Afrique et dans le reste du monde.{% endtrans %} 
+            </p>
+        </div>
+    </div>
+</div>
+<div id="ourPartners" class="bxslider-customers" >             
+    <!-- Clients -->
+    <h2 class="block-titles">{% trans %}<b>Nos</b> partenaires{% endtrans %}</h2>
+    <hr class="line-title"/>
+    <div>
+        <div class="g-container--md g-padding-y-80--xs g-padding-y-80--sm content">
+            <!-- Swiper Clients -->
+            <div>
+                <ul class="bxsliderPartners">
+                    {%for partner in partners%}
+                        <li style="text-align: center !important">
+                            <div class="col-md-12 brand-grid" style="text-align: center">
+                                <a href="#" rel="nofollow">
+                                    <img style="display:inline" src="{{asset('webFiles/partner/'~partner.id()~"/"~partner.image)}}" alt="{{partner.alt}}" class="width_img">
+                                </a>
+                            </div>     
+                        {%endfor%}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End Swiper Clients -->
+        </div>
+    </div>
+</div>
+
+<!--========== END PAGE CONTENT ==========-->
+{%endblock%}
+{%block javascripts %}
+    <script>
+        $(document).ready(function () {
+            if ($(".g-container--md ").width() <= 750) {
+                var width = $(".g-container--md ").width()
+            } else {
+                var width = $(".g-container--md ").width() / 5
+            }
+            $('.bxsliderPartners').bxSlider({
+                minSlides: 3,
+                pager: false,
+                maxSlides: 5,
+                speed: 10,
+                controls: false,
+                auto: true,
+                slideWidth: width
+            });
+        });
+
+    </script>
+{%endblock %} 

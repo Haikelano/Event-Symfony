@@ -1,13 +1,168 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!-- Begin Head -->
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    {#{render(controller("VegaWebsiteBundle:Default:loadTitleMeta",{"page_name":page_name}))}#}
+    <!-- Web Fonts -->
+
+    <!-- Vendor Styles -->
+    <link href="{{asset('assets/website/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/website/css/animate.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/website/vendor/themify/themify.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/website/vendor/scrollbar/scrollbar.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/website/vendor/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/website/plugins/jquery.bxslider/jquery.bxslider.css')}}" rel="stylesheet"  media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Exo:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{{asset('assets/website/css/responsive.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Theme Styles -->
+    {%block stylesheet %}{%endblock%}
+    <link href="{{asset('assets/website/css/global/global.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/website/css/style.css')}}" rel="stylesheet" type="text/css"/>
+    <!-- Favicon -->
+    <link href="{{asset('assets/website/img/vegastar.png')}}" rel="shortcut icon" type="image/x-icon">
+    <script type="text/javascript" src="{{asset('assets/website/vendor/jquery.min.js')}}"></script>
+</head>
+<!-- End Head -->
+<!-- Model-->
+{% include 'Website/modal.html.twig' %}
+<!--End Model-->
+<!-- Body -->
+<body class="{%block body_class %}{%endblock %}">
+
+<!--========== HEADER ==========-->
+<header class="navbar-fixed-top s-header js__header-sticky js__header-overlay">
+
+    <!-- Navbar -->
+    <div class="s-header__navbar">
+        <div class="s-header__container">
+            <div class="s-header__navbar-row">
+                <div class="s-header__navbar-row-col">
+                    <!-- Logo -->
+                    <div class="s-header__logo">
+                        <a href="{{path('index')}}" class="s-header__logo-link">
+                            <img class="s-header__logo-img s-header__logo-img-default" src="{{asset('assets/website/img/logo white.png')}}" alt="Vegagroup Logo">
+                            <img class="s-header__logo-img s-header__logo-img-shrink" src="{{asset('assets/website/img/logo blue.png')}}" alt="Vegagroup Logo">
+                        </a>
+                    </div>
+                    <!-- End Logo -->
+                </div>
+                <div class="s-header__navbar-row-col">
+                    <!-- Trigger -->
+
+                    <a href="javascript:void(0);" class="s-header__trigger js__trigger">
+                        <span class="fas fa-bars fa-2x menuitem-bars"></span>
+
+                    </a>
+                    <a class="pull-right link-lang {%if  app.request.get('_locale') =="fr"%}active{%endif%}" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'fr'})) }}" class="language-link">FR</a>
+                    {#<a class="pull-right link-lang {%if  app.request.get('_locale') =="en"%}active{%endif%}" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'en'})) }}">EN</a>
+                    #}<form id="webForm" action="{{path("index")}}" autocomplete="on">
+                        <input id="search_input" name="search" type="text" placeholder="Rechercher" autocomplete="off">
+                        <button id="search_submit" value="{%trans%}Rechercher{%endtrans%}" type="submit"><i class="ti-search"></i></button>
+                    </form>
+                    <!-- Search Form -->
+
+                    <a id="search_submit1" href="#search">
+                        <i class="fa fa-search"></i> {%trans%}Rechercher{%endtrans%}
+                    </a>
+                    <div id="search">
+                        <span class="close">X</span>
+                        <form role="search" id="searchform" action="{{path("index")}}" method="get">
+                            <input value="" id="searchInput" name="search" type="search" placeholder="{%trans%}Taper votre texte ici{%endtrans%}"/>
+                        </form>
+                    </div>
+
+
+                    <!-- End Trigger -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar -->
+
+    <!-- Overlay -->
+
+    {#{render(controller("VegaWebsiteBundle:Default:topbar",{"request":app.request}))}#}
+
+    <!-- End Overlay -->
+</header>
+
+</body>
+
+{%block page_content %}{%endblock%}
+
+<!--========== FOOTER ==========-->
+{#{{render(controller("WebsiteBundle:Default:footer"))}}#}
+<!--========== END FOOTER ==========-->
+
+<!-- Back To Top -->
+<a href="javascript:void(0);" class="s-back-to-top js__back-to-top"></a>
+
+<!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
+<!-- Vendor -->
+
+<script type="text/javascript" src="{{asset('assets/website/vendor/jquery.migrate.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/jquery.back-to-top.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/scrollbar/jquery.scrollbar.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/swiper/swiper.jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/waypoint.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/vendor/jquery.parallax.min.js')}}"></script>
+
+
+<script type="text/javascript" src="{{asset('assets/website/vendor/jquery.wow.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/modal.js')}}"></script>
+
+<!-- General Components and Settings -->
+<script type="text/javascript" src="{{asset('assets/website/js/global.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/components/header-sticky.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/components/scrollbar.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/components/swiper.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/components/parallax.min.js')}}"></script>
+<script src="{{ asset('assets/website/plugins/jquery.bxslider/jquery.bxslider.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/website/js/components/wow.min.js')}}"></script>
+<script src="{{asset('assets/website/plugins/countdown/dist/jquery.countdown.js')}}"></script>
+
+
+<!--========== END JAVASCRIPTS ==========-->
+<script>
+    $(document).ready(function(){
+
+        $('a[href="#search"]').on('click', function(event) {
+            $( ".menuitem-bars").hide();
+            $(".s-header__logo-img").hide();
+            $('#search').addClass('open');
+            $('#search > form > input[type="search"]').focus();
+        });
+
+        $('#search, #search button.close').on('click keyup', function(event) {
+
+            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+                $(this).removeClass('open');
+                $( ".menuitem-bars").show();
+                $(".s-header__logo-img").show();
+            }
+        });
+
+
+    });
+
+</script>  <script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = {lat: -25.344, lng: 131.036};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('js__google-container'), {zoom: 4, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+</script>
+
+{%block javascripts %}{%endblock %}
+</body>
+<!-- End Body -->
 </html>

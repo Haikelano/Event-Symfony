@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 sept. 2018, 15:15:37
+    Author     : pc
+*/
+@media (max-width: 61.9em) {
+
+}
+@media (max-width:1199px) and (min-width:992px){
+    .block-home-text p{min-height: 170px !important;}
+}

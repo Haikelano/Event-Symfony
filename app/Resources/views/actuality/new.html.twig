@@ -1,16 +1,46 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} <h1>Actuality creation</h1>{%endblock%}
 {% block body %}
-    <h1>Actuality creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add Actuality</h4>
+                {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <span><b>Succès !</b> {{flashMessage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {{ form_start(form, {'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                <div class="form-group">
+                    {{form_label(form.title,"Title *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.resume,"Resume *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.resume, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                        <!-- Field Hidden -->
+                        {{ form_widget(form.datecreate, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('actuality_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                {{ form_widget(form._token) }}
+                <div class="col-md-12">
+                  <input type="submit" value="Create" class="btn btn-primary pull-right"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+{%block javascripts %}
+
+{%endblock%}

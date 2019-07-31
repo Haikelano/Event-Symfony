@@ -32,6 +32,19 @@ class ActualityController extends Controller
             'actualities' => $actualities,
         ));
     }
+    /**
+     * Lists 3 partner entities.
+     *
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $actualities = $em->getRepository('WebsiteBundle:Actuality')->findBy(array(),null,3,null);
+
+        return $this->render('actuality/list.html.twig', array(
+            'actualities' => $actualities,
+        ));
+    }
 
     /**
      * Creates a new Actuality entity.
@@ -49,8 +62,8 @@ class ActualityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($actuality);
             $em->flush();
-
-            return $this->redirectToRoute('actuality_show', array('id' => $actuality->getId()));
+            $this->addFlash('flashSuccess', ' Add Actuality succes' );
+            return $this->redirectToRoute('actuality_index', array('id' => $actuality->getId()));
         }
 
         return $this->render('actuality/new.html.twig', array(

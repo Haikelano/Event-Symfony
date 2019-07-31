@@ -1,43 +1,59 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %}   <h1>Actuality list</h1>{%endblock%}
 {% block body %}
-    <h1>Actuality list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idactuality</th>
-                <th>Title</th>
-                <th>Resume</th>
-                <th>Datecreate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for actuality in actualities %}
-            <tr>
-                <td><a href="{{ path('actuality_show', { 'id': actuality.idactuality }) }}">{{ actuality.idactuality }}</a></td>
-                <td>{{ actuality.title }}</td>
-                <td>{{ actuality.resume }}</td>
-                <td>{% if actuality.datecreate %}{{ actuality.datecreate|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('actuality_show', { 'id': actuality.idactuality }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('actuality_edit', { 'id': actuality.idactuality }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('actuality_new')}} ">Add Actuality</a>
+            <div class="card-header">
+                <h5 class="card-category">Toutes les Actualité</h5>
+                <h4 class="card-title"> Liste des Actualités</h4>
+                {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <span><b>Succes !</b> {{flashMessage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                {%if actualities is empty %}
+                Aucun résultat est trouvé !
+                {%else%}
+                <div class="table-responsive">
+                    <table  class="table" id="tab">
+                         <thead>
+                           <tr>
+                           <th>Title</th>
+                               <th>Resume</th>
+                              <th>Datecreate</th>
+                              <th>Actions</th>
+                             </tr>
+                         </thead>
+                        <tbody>
+                             {% for actuality in actualities %}
+                                  <tr>
+                                   <td>{{ actuality.title }}</td>
+                                    <td>{{ actuality.resume }}</td>
+                                    <td>{% if actuality.datecreate %}{{ actuality.datecreate|date('Y-m-d') }}{% endif %}</td>
+
+                                      <td>
+                                          <a href="{{ path('actuality_edit', { 'id': actuality.idactuality }) }}"class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                                          <a href="{{ path('actuality_delete', { 'id': actuality.idactuality }) }}"class="btn-width btn btn-sm btn-danger "><i class="fa fa-edit"></i> Delete</a>
+                                      </td>
+                                </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('actuality_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    </div>
+    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+

@@ -17,7 +17,7 @@ class ActualityType extends AbstractType
         $builder
             ->add('title')
             ->add('resume')
-            ->add('datecreate', 'date')
+            ->add('datecreate', 'date',array( 'attr'=>array('style'=>'display:none;')))
         ;
     }
     

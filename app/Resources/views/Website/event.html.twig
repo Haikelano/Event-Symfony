@@ -1,0 +1,423 @@
+{%extends "base.html.twig" %}
+{%block stylesheet %}
+    <meta property="og:image"         content="http://www.vegagroup.com.tn/webFiles/page/15/banner.jpg" />
+    <meta name="twitter:image" content="http://www.vegagroup.com.tn/webFiles/page/15/banner.jpg">
+    <meta property='og:image' content="http://www.vegagroup.com.tn/webFiles/page/15/banner.jpg"/>
+    <link href="{{asset('assets/event/css/style.css')}}" rel="stylesheet" type="text/css"/>
+{%endblock%}
+{%block page_content %}
+    <!--========== Page Banner ==========-->
+    {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+    <!--========== End page banner ==========-->
+    <!--========== PAGE CONTENT ==========-->
+    <section>
+        <div class="lgx-countdown">
+            <div class="lgx-inner-countdown">
+                <div class="countdown-left-info">
+                    <h2 class="title">Hurry Up!</h2>
+                    <h3 class="subtitle">Get Ready For The Event</h3>
+                    <p class="date">20 & 21 Juin 2019</p>
+                </div>
+                <div class="countdown-right">
+                    <div class="lgx-countdown-area lgx-countdown-simple">
+                        <div id="lgx-countdown" ></div>
+                    </div>
+                </div>
+            </div><!-- //.INNER -->
+        </div>
+    </section>
+    <div class="container g-padding-y-80--xs g-padding-y-80--sm">
+
+        <div class="row g-overflow--hidden">
+            <div class=" col-md-12 col-xs-12 g-full-width--xs g-margin-b-30--xs g-margin-b-0--lg">
+                <section id="mu-about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mu-about-area">
+                                    <!-- Start Feature Content -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mu-about-right">
+                                                <div class="col-md-12">
+                                                    <div class="row"><h2 class="block-job-titles contact-page-title"><b class="block-company-titles-prefix">{%trans%}Description{%endtrans%} </b></h2></div>
+
+                                                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                                                </div>
+                                                <p>Vous aimez relever les défis? Vous êtes créatif et avez des idées originales? </p>
+                                                <p>Vous aimez les challenges, la compétition, l'adrénaline? </p>
+                                                <p>Ou vous êtes tout simplement passionné par les nouvelles technologies? </p> 
+                                                <p>VEGANET, La filiale digitale du VEGA GROUP avec ses partenaires étrangers, organise pour vous un Hackathon de 48 heures durant lesquelles vous serez appelé à développer une solution technologique innovante et qui répond à une problématique donnée.  Vous serez accompagné par des coachs spécialisés et compétents qui vous suivront tout au long de ces 48 heures. Vous aurez ensuite l'opportunité de présenter votre solution devant un jury composé de spécialistes qui gratifiera les deux meilleurs projets!</p>
+                                                <p><b>Rendez-vous donc les 20 et le 21 JUIN 2019  dans nos locaux VEGA au Lac 3 (Zone d’activité Khaireddine)</b></p>
+                                                <a href="#formulaire" class="btn-paticipate text-uppercase s-btn s-btn--primary-bg reply-btn  ">Participer</a>
+                                                <div class="social-share">
+                                                    <label class="color-share">{%trans%}Copier l'url : {%endtrans%}</label>
+                                                    <div class="input-group">
+                                                        <input  class="form-control input-newsletter" type="text" value="https://urlz.fr/9USD" id="myInput">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-secondary btn-newsletter" onclick="copyfunction()"><i class="far fa-copy"></i></button>
+                                                        </span>
+                                                    </div>
+                                                    <label class="color-share">{%trans%}Ou bien partager sur : {%endtrans%}</label>
+                                                    <ul class="list-social-share" style="list-style: none">
+                                                        <li>
+                                                            <div class="fb-share-button" data-href="http://vegagroup.com.tn/fr/event" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                                                                <a class="fb-xfbml-parse-ignore social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.vegagroup.com.tn%2Ffr%2Fevent&amp;src=sdkpreparse">
+                                                                    <i class="fab fa-facebook"></i>
+                                                                </a>
+                                                            </div>   
+                                                        </li>
+                                                        <li>
+                                                            <a class="social-link" href="https://twitter.com/share?url=http://www.vegagroup.com.tn/fr/event" target="_blank">
+                                                                <i class="fab fa-twitter"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="social-link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.vegagroup.com.tn/fr/event" target="_blank">
+                                                                <i class="fab fa-linkedin"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5" style="margin-left: 50px;">
+                                            <img src="{{asset('assets/event/images/description.png')}}" alt="description">
+                                        </div>
+                                    </div>
+                                    <!-- End Feature Content -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="row" style="margin-right: 0">
+
+            <div class="col-md-12  g-margin-b-0--lg company-image-div divblock"  style="background: url('{{asset('assets/event/images/bgplanning.svg')}}')">
+
+            </div>
+        </div>
+    </section>
+    <div class="container g-padding-y-80--xs g-padding-y-80--sm">
+
+        <div class="row g-overflow--hidden">
+            <div class=" col-md-12 col-xs-12 g-full-width--xs g-margin-b-30--xs g-margin-b-0--lg">
+                <section>
+                    <div id="approachContainer" class="container padding-top-50">                        
+                        <div class="col-md-4 col-sm-12 block-home block-about">
+                            <div class="clearfix">                        
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="block-home-title">Eligibilité</h3>
+                                    <div class="g-margin-b-0--xs block-home-text">
+                                        <center><img class="img-block" src="{{asset('assets/event/images/eligibilite.svg')}}" alt="eligibilité"></center>
+                                        <br>
+                                        <ul>
+                                            <li>Être étudiant ou nouveau diplômé en recherche d’emploi </li>
+                                            <li>Âge < 25 ans</li>
+                                            <li>Passionné par les nouvelles technologies et développement Mobile</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 block-home block-about">
+                            <div class="clearfix">                        
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="block-home-title">Prix</h3>
+                                    <div class="g-margin-b-0--xs block-home-text">
+                                        <center><img class="img-block" src="{{asset('assets/event/images/prix.svg')}}" alt="Prix"></center>
+                                        <br>
+                                        <ul>
+                                            <li style="color: #8a0055"><b>2500 DT à gagner :</b> 1er Prix = 1500 DT , 2ème Prix = 1000 DT</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="col-md-4 col-sm-12 block-home block-about">
+                            <div class="clearfix">                        
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="block-home-title">Équipe</h3>
+                                    <div class="g-margin-b-0--xs block-home-text">
+                                        <center><img class="img-block" src="{{asset('assets/event/images/equipe.svg')}}" alt="Équipe"></center>
+                                        <br>
+                                        <ul>
+                                            <li>Les candidats doivent postuler par équipe</li>
+                                            <li>6 équipes composées de 2 à 4 candidats seront retenues.</li>
+                                            <li>Ils travailleront ensemble durant deux Jours </li>
+                                            <li>2 équipes remporteront les meilleurs prix</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="g-promo-section" id="regles">            
+            <div id="companiesForWeb" class="row" style="margin-right: 0">
+
+                <span class="anchorCompanies"></span>
+                <div class="row" style="margin-right: 0">
+                    <div class="col-md-6    company-presentation-div divblock">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-company-titles"  style="float: left">EXIGENCES :</h2></div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Développer une Application Android avec une technologie choisie (Ionic, Android Natif, cross Platform).</li>
+                                <li>  Le thème sera axé sur le travail associatif et les actions de solidarité et humanitaires (crowdfunding).</li>
+                                <li>  Le sujet sera dévoilé la veille du hackathon sur notre page Facebook, notre site web et notre page LinkedIn.</li>
+                                <li>  Les descriptions des applications doivent être déposées le 21/06/2019 vers 16 :30 sur le Github privé de VegaNet. <br> Ceux-ci devraient inclure:     
+                                    <div class="descriptiontag">
+                                        <span> o Description de ce que fait l'application et de ses liens avec le thème en question  </span>
+                                        <br><span> o Lien vers le référentiel Github privé avec le code de l'application  
+                                        </span><br>
+                                        <span> o Captures d'écran / Vidéo de l'application </span><br>
+                                        <span> o Noms et emails des membres de l'équipe</span>
+                                    </div>
+                                </li>
+                                <li> Le code est verrouillé à 17 : 00 sur le repository.</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col-md-6   g-margin-b-0--lg company-image-div divblock" style="background: url('{{asset('assets/event/images/exigences.jpg')}}')" >
+                    </div>
+                </div>
+                <span class="anchorCompanies"></span>
+                <div class="row"  style="margin-right: 0" >
+                    <div class="col-md-6  g-margin-b-0--lg company-image-div divblock" style="background: url('{{asset('assets/event/images/jeu.jpg')}}') 50% 0px no-repeat;;">
+                    </div>
+                    <div class="col-md-6   company-presentation-div divblock">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <h2 class="block-company-titles"  style="float: left">RÈGLE DU JEU :</h2>
+                            </div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Le développement doit être entièrement effectué pendant les heures prévues (9h30-17h00).</li>
+                                <li>  Les projets plagiés seront disqualifiés.</li>
+                                <li>  L'équipe doit être composée de 2 à 4 développeurs</li>
+                            </ul>
+
+                        </div>  
+                    </div>
+                </div>
+                <span class="anchorCompanies"></span>
+                <div class="row" style="margin-right: 0">
+                    <div class="col-md-6    company-presentation-div divblock">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-company-titles"  style="float: left">LOGISTIQUE :</h2></div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Un bus de collecte (aller et retour) sera mis à disposition depuis  la station TGM vers 08 : 30.</li>
+                                <li>  Café, eau, gâteaux, et déjeuner fournis.</li>
+                                <li>  Chaque candidat ramène son PC-portable ainsi que tout matériel qu’il juge nécessaire pour le bon déroulement du hackathon.</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col-md-6   g-margin-b-0--lg company-image-div divblock" style="background: url('{{asset('assets/event/images/logistique.jpg')}}')" >
+                    </div>
+                </div>
+            </div>
+            <div id="companiesForMobile" class="row" style="margin-right: 0">                   
+                <div class="row"  style="margin-right: 0">
+                    <div class="col-md-6  col-sm-12  company-presentation-div">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-company-titles"  style="float: left">EXIGENCES :</h2></div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Développer une Application Android avec une technologie choisie (Ionic, Android Natif, cross Platform).</li>
+                                <li>  Le thème sera axé sur le travail associatif et les actions de solidarité et humanitaires (crowdfunding).</li>
+                                <li>  Le sujet sera dévoilé la veille du hackathon sur notre page Facebook, notre site web et notre page LinkedIn.</li>
+                                <li>  Les descriptions des applications doivent être déposées le 21/06/2019 vers 16 :30 sur le Github privé de VegaNet. <br> Ceux-ci devraient inclure:     
+                                    <div class="descriptiontag">
+                                        <span> o Description de ce que fait l'application et de ses liens avec le thème en question  </span>
+                                        <br><span> o Lien vers le référentiel Github privé avec le code de l'application  
+                                        </span><br>
+                                        <span> o Captures d'écran / Vidéo de l'application </span><br>
+                                        <span> o Noms et emails des membres de l'équipe</span>
+                                    </div>
+                                </li>
+                                <li> Le code est verrouillé à 17 : 00 sur le repository.</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col-md-6  col-sm-12  g-margin-b-0--lg company-image-div" style="background: url('{{asset('assets/event/images/exigences.jpg')}}')" alt="exigences">
+                    </div>
+                </div> 
+                <div class="row"  style="margin-right: 0">
+                    <div class="col-md-6  col-sm-12  company-presentation-div">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-company-titles"  style="float: left">RÈGLE DU JEU :</h2></div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Le développement doit être entièrement effectué pendant les heures prévues (9h30-17h00).</li>
+                                <li>  Les projets plagiés seront disqualifiés.</li>
+                                <li>  L'équipe doit être composée de 2 à 4 développeurs</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col-md-6  col-sm-12  g-margin-b-0--lg company-image-div" style="background: url('{{asset('assets/event/images/jeu.jpg')}}')" alt="jeu">
+                    </div>
+                </div> 
+                <div class="row"  style="margin-right: 0">
+                    <div class="col-md-6  col-sm-12  company-presentation-div">
+                        <div class="col-md-12">
+                            <div class="row"><h2 class="block-company-titles"  style="float: left">LOGISTIQUE :</h2></div>
+
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                        </div>                        
+                        <div class="block-company-text">
+                            <ul>
+                                <li>  Un bus de collecte (aller et retour) sera mis à disposition depuis  la station TGM vers 08 : 30.</li>
+                                <li>  Café, eau, gâteaux, et déjeuner fournis.</li>
+                                <li>  Chaque candidat ramène son PC-portable ainsi que tout matériel qu’il juge nécessaire pour le bon déroulement du hackathon.</li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col-md-6  col-sm-12  g-margin-b-0--lg company-image-div" style="background: url('{{asset('assets/event/images/logistique.jpg')}}')" alt="exigences">
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="formulaire" class="container padding-top-50">                        
+
+            <div class="col-md-12 col-sm-12 g-margin-b-0--lg">
+
+                <div class="center-block g-width-100-percent--xs">
+                    <div class="col-md-12">
+                        <div class="row"><h2 class="block-job-titles contact-page-title"><b class="block-company-titles-prefix"> INSCRIPTION :</b>  </h2></div>
+                        <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="div-inscription-event" style="margin-bottom: 30px"><span style="color: #e10000">Dernier délai d’inscription le 16/06/2019.</span><br>
+                                Personne à contacter : Hassine Elarbi 21 143 344 <br>
+                                Email: hackathon@vegagroup.com.tn <br></div>
+                        </div>
+                        <div class="container">
+                            <div class="col-md-12">
+                                <form action="{{path('vega_website_event')}}" method="POST">
+                                    {{ form_widget(form._token) }}
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <label for="inputEMAIL" class="reply-form-label">{% trans %}Email{% endtrans %} <span class="required-field">*</span></label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.email, {'attr': {'class': 'form-control s-form-v2__input reply-form-input' ,'required':'required'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <label for="inputTEAM" class="reply-form-label">{% trans %}Name / Team Name {% endtrans %} <span class="required-field">*</span></label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.teamname, {'attr': {'class': 'form-control s-form-v2__input reply-form-input' ,'required':'required'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <label for="inputTEAMEMAIL" class="reply-form-label">{% trans %}Email / Team email List  {% endtrans %} <span class="required-field">*</span></label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.teamemail, {'attr': {'class': 'form-control s-form-v2__input reply-form-input' ,'required':'required'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <label for="inputADDRESS" class="reply-form-label">{% trans %}Address / Team Adresses  {% endtrans %} <span class="required-field">*</span></label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.address, {'attr': {'class': 'form-control s-form-v2__input reply-form-input' ,'required':'required'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <label for="inputTéléphone" class="reply-form-label">{% trans %}Phone number / List Phone Number {% endtrans %} <span class="required-field">*</span></label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.phone, {'attr': {'class': 'form-control s-form-v2__input reply-form-input','required':'required'}}) }}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <label for="inputMESSAGE" class="reply-form-label">{% trans %}Comments{% endtrans %}</label>
+                                            <div class="form-group">
+                                                {{ form_widget(form.comment, {'attr': {'class': 'form-control s-form-v2__input g-padding-y-20--xs reply-form-textarea' ,'required':'required'}}) }}
+                                            </div>
+                                            <!-- Rounded switch -->
+                                            <a href="#regles" class="reglement">Règlement de jeu </a>
+
+
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <button class="btn-paticipate btninscription text-uppercase s-btn s-btn--primary-bg reply-btn" type="submit">{% trans %}Inscription{% endtrans %} <i class="glyphicon glyphicon-send "> </i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row" style="margin-right: 0">
+
+        <div class="center-block g-box-shadow__dark-lightest-v1 g-width-100-percent--xs blog-div">
+            <section class="s-google-map">
+                <iframe width="100%" height="100%" src="https://maps.google.com/maps?width=100%&amp;height=400&amp;hl=en&amp;coord=36.835674,10.245740&amp;q=Imm.%2047%2C%20Zone%20d'activit%C3%A9%20%20Khair-Eddine%2CKram%20Tunis%20+(Vega%20Group)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+            </section>
+        </div>
+
+    </div>
+
+
+    <!--========== END PAGE CONTENT ==========-->
+{%endblock%}
+{%block javascripts %}
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#lgx-countdown').countdown('2019/06/20', function (event) {
+                var $this = $(this).html(event.strftime(''
+                        + '<span class="lgx-days">%D <i> Jours </i></span> '
+                        + '<span class="lgx-hr">%H <i> Heures </i></span> '
+                        + '<span class="lgx-min">%M <i> Min </i></span> '
+                        + '<span class="lgx-sec">%S <i> Sec </i></span>'));
+            });
+        });
+        function copyfunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+        }
+    </script>
+{%endblock javascripts %}

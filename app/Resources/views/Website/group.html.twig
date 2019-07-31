@@ -1,0 +1,84 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+    <!--========== Page Banner ==========-->
+            {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+        <!--========== End page banner ==========-->
+        <!--========== PAGE CONTENT ==========-->
+          <!-- Culture -->
+        <div class="g-promo-section">            
+            <div id="companiesForWeb" class="row" style="margin-right: 0">
+                {%for company in companies %}
+                    {%if loop.index is not divisibleby(2)%}
+                        <span class="anchorCompanies"  id="company-div-{{company.id}}"></span>
+                        <div class="row"  style="margin-right: 0">
+                            <div class="col-md-6  g-margin-b-0--lg company-image-div" style="background: url('{{asset('webFiles/company/'~company.id~'/'~company.presentationimage)}}') 50% 0px no-repeat;;">
+                            </div>
+                            <div class="col-md-6   company-presentation-div">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <h2 class="block-company-titles"  style="float: left">{{company.name|raw}}</h2>
+                                    </div>
+
+                                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                                </div>                        
+                                <div class="block-company-text">
+                                    {{company.presentation|raw}}
+                                </div>  
+                                <div class="div-btn "><a href="{{company.websitelink}}" target="_blank" class="showPlusBtn pull-right">{%if  "@" in company.websitelink  %}{% trans %}Contactez Nous{% endtrans %}{%else%}{% trans %}Rejoignez Nous{% endtrans %}{%endif%}<span class="span-margin">+</span> </a></div>
+                            </div>
+                        </div>
+                    {%else%}
+                        <span class="anchorCompanies"  id="company-div-{{company.id}}"></span>
+                        <div class="row" id="company-div-{{company.id}}"  style="margin-right: 0">
+                            <div class="col-md-6    company-presentation-div">
+                                <div class="col-md-12">
+                                    <div class="row"><h2 class="block-company-titles"  style="float: left">{{company.name|raw}}</h2></div>
+
+                                    <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                                </div>                        
+                                <div class="block-company-text">
+                                    {{company.presentation |raw}}
+                                </div>  
+                                <div class="div-btn "><a href="{{company.websitelink}}" target="_blank" class="showPlusBtn pull-right">{%if  "@" in company.websitelink  %}{% trans %}Contactez Nous{% endtrans %}{%else%}{% trans %}Rejoignez Nous{% endtrans %}{%endif%}<span class="span-margin">+</span> </a></div>
+                            </div>
+                            <div class="col-md-6   g-margin-b-0--lg company-image-div" style="background: url('{{asset('webFiles/company/'~company.id~'/'~company.presentationimage)}}')" alt="{{company.imagealt}}">
+                            </div>
+                        </div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+            <div id="companiesForMobile" class="row" style="margin-right: 0">
+                {%for company in companies %}                    
+                    <div class="row" id="company-div-{{company.id}}"  style="margin-right: 0">
+                        <div class="col-md-6  col-sm-12  company-presentation-div">
+                            <div class="col-md-12">
+                                <div class="row"><h2 class="block-company-titles"  style="float: left">{{company.name|raw}}</h2></div>
+
+                                <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>
+                            </div>                        
+                            <div class="block-company-text">
+                                {{company.presentation |raw}}
+                            </div>  
+                            <div class="div-btn "><a href="{{company.websitelink}}" target="_blank" class="showPlusBtn pull-right">{%if  "@" in company.websitelink  %}{% trans %}Contactez Nous{% endtrans %}{%else%}{% trans %}Rejoignez Nous{% endtrans %}{%endif%}<span class="span-margin">+</span> </a></div>
+                        </div>
+                        <div class="col-md-6  col-sm-12  g-margin-b-0--lg company-image-div" style="background: url('{{asset('webFiles/company/'~company.id~'/'~company.presentationimage)}}')" alt="{{company.imagealt}}">
+                        </div>
+                    </div>               
+                {%endfor%}
+            </div>
+        </div>
+       <!-- Our campanies -->
+       <div id="ourCampanies" class="container" style="margin-top: 15px">
+            <div class="row g-margin-b-20--xs"> 
+                {%for company in companies%}
+                    <div class="col-md-3 col-sm-6 block-group-company block " {%if loop.index is divisibleby(2)%}style="background: rgb(53, 142, 215) !important; "{%else%}style=" background: rgb(26, 50, 78) !important; "{%endif%}>
+                        <a href="#company-div-{{company.id}}"><img src="{{asset('webFiles/company/'~company.id~'/'~company.logo)}}" alt="{{company.logoalt}}"/></a>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>
+     
+                        
+      
+    <!--========== END PAGE CONTENT ==========-->
+{%endblock%}

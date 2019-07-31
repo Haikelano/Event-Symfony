@@ -1,0 +1,199 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+    <!--========== SWIPER SLIDER ==========-->
+        <div class="s-swiper js__swiper-one-item">
+            <!-- Swiper Wrapper -->
+            <div class="swiper-wrapper">
+                {%for slide in slides %}
+                    <div class="g-fullheight--xs g-bg-position--center swiper-slide" style="background: url('{{asset('webFiles/slider/'~slide.id()~'/'~slide.media)}}');">
+                        <div class="container g-text-center--xs g-ver-center--xs">
+                            <div class="g-margin-b-30--xs text-left">
+                                <h1 class="g-color--white slide-title">{{slide.title|raw}}</h1>
+                            </div>
+                            {%if slide.link != null%}
+                                <div><a href="{{slide.link}}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 pull-left">{%trans %}Lire plus{%endtrans%}</a></div>
+                            {%endif%}
+                            </div>
+                    </div>  
+                {%endfor%}
+            </div> 
+        </div>
+        <!--========== END SWIPER SLIDER ==========-->
+
+        <!--========== PAGE CONTENT ==========-->
+          <!-- Culture -->
+        <div class="g-promo-section">
+                <div class="row" style=" margin-right: 0;">
+                    <div id="presentation-image" class="col-md-7 g-margin-b-0--lg" style="background: url('{{(asset('webFiles/about/'~vegagroup.homeimage))}}');">
+                        
+                    </div>
+                    <div class="col-md-5 presentation-home-div">
+                         <div class="col-md-12">
+                            <div class="row"><h2 class="block-titles block-titles-prefix"  style="float: left">{%trans%}Presentation{%endtrans%}</h2></div>
+                            <div class="row div-line"><hr class="line-title" style="float: left"/><br/></div>           
+                        </div>
+                        <div class="block-home-text">
+                            {{vegagroup.summary|raw}}
+                        </div>
+                        <div><a href="{{path('vega_website_aboutus')}}" class="showPlusBtn pull-right">{% trans %}Voir plus{% endtrans %} <span class="span-margin">+</span> </a></div>
+                    </div>
+                </div>
+           
+            
+        </div>
+        <!-- End Culture -->
+        
+        <!-- Features -->
+        <div id="homeBlocks" class="container">
+            
+            <div class="row g-margin-b-60--xs g-margin-b-70--md">
+                {%for block in blocks %}
+                    <div class="col-md-4 col-sm-12 g-margin-b-60--xs g-margin-b-0--md block-home">
+                        <div class="clearfix">                        
+                            <div class="g-media__body g-padding-x-20--xs">
+                                <h3 class="block-home-title">{{block.title}}</h3>
+                                <div class="g-margin-b-0--xs block-home-text">
+                                    <center><img class="img-block" src="{{asset('webFiles/block/'~block.getId()~"/"~block.image)}}" alt="{{block.alt}}"></center>
+                                    <br>
+                                    {{block.summary|raw}}
+                                </div>
+                                <div class="div-btn"><a href="{{path('vega_website_aboutus')}}#approachContainer" class="showPlusBtn">{% trans %}Voir plus{% endtrans %}<span class="span-margin">+</span> </a></div>
+                            </div>
+                        </div>
+                    </div>
+                {%endfor%}
+            </div>
+           
+            <!-- // end row  -->
+        </div>
+        <!-- End Features -->
+        <div id="ourJobs" class="container">
+            
+            <div class="row g-margin-b-60--xs g-margin-b-70--md">
+                <h2 class="block-titles"><b>{% trans %}Nos{%endtrans%}</b> {% trans %}métiers{% endtrans %}</h2>
+                <hr class="line-title"/>
+                <div id="jobsDivForWeb">
+                {%for job in jobs %}
+                    <div class="col-md-6 block-home-job">
+                        <div class="clearfix">
+                            {%if loop.index < 3 %}
+                                <div class="col-sm-6">
+                                    <div class="g-media__body">
+                                        <a href="{{path('vega_website_job')}}#job-div-{{job.id}}">
+                                            <h3 class="job-title">{{job.title|raw}}</h3>
+                                        </a>
+                                        <span class="line-block-title"></span><br/>
+                                        <div class="g-margin-b-0--xs job-text">
+                                            {{job.summary|raw }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 job-img" style="background: url('{{asset('webFiles/job/'~job.id~'/'~job.image)}}')">
+                                </div>
+                            {%else%}
+                                <div class="col-sm-6 job-img" style="background: url('{{asset('webFiles/job/'~job.id~'/'~job.image)}}')">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="g-media__body">
+                                        <a href="{{path('vega_website_job')}}#job-div-{{job.id}}">
+                                            <h3 class="job-title">{{job.title|raw}}</h3>
+                                        </a>
+                                        <span class="line-block-title"></span><br/>
+                                        <div class="g-margin-b-0--xs job-text">
+                                            {{job.summary|raw}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {%endif%}    
+                        </div>
+                    </div>
+                {%endfor%} 
+                </div>
+                <div id="jobsDivForMobile">
+                    {%for job in jobs %}
+                        <div class="col-sm-12 block-home-job">
+                            <div class="clearfix">
+                                <div class="col-sm-12">
+                                    <div class="g-media__body">
+                                        <a href="{{path('vega_website_job')}}#job-div-{{job.id}}">
+                                            <h3 class="job-title">{{job.title|raw}}</h3>
+                                        </a>
+                                        <span class="line-block-title"></span><br/>
+                                        <div class="g-margin-b-0--xs job-text">
+                                            {{job.summary|raw }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 job-img" style="background: url('{{asset('webFiles/job/'~job.id~'/'~job.image)}}')">
+                                </div>
+                            </div>
+                        </div>
+                    {%endfor%} 
+                </div>
+            </div>
+            <!-- // end row  -->
+        </div>
+        <!-- Our campanies -->
+        <div id="ourCampanies" class="container">
+            <div class="row g-margin-b-60--xs g-margin-b-70--md">
+                <h2 class="block-titles"><b>{% trans %}Nos{%endtrans%}</b> {% trans %}filiales{% endtrans %}</h2>
+                <hr class="line-title"/>
+                {%for filiale in filiales %}
+                    <div class="col-md-3 col-sm-6 block-home-company" {%if loop.index is divisibleby(2)%}style="background: rgb(53, 142, 215) !important; "{%else%}style=" background: rgb(26, 50, 78) !important; "{%endif%}>
+                        <a href="{{path('vega_website_company')}}#company-div-{{filiale.id}}"> 
+                            <img  src="{{asset('webFiles/company/'~filiale.getId()~"/"~filiale.logo)}}" alt="{{filiale.logoalt}}">
+                        </a>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>   
+        <div id="ourClients" class="bxslider-customers">             
+        <!-- Clients -->
+            <h2 class="block-titles"><b>{% trans %}Ils nous{% endtrans %} </b> {% trans %}font confiance{% endtrans %} </h2>
+            <hr class="line-title"/>
+            <div>
+                <div class="g-container--md g-padding-y-80--xs g-padding-y-80--sm content">
+                    <!-- Swiper Clients -->
+                    <div>
+                    <ul class="bxslider">
+                        {%for customer in customers%}
+                        <li style="text-align: center !important">
+                            <div class="col-md-12 brand-grid" style="text-align: center">
+                            <a href="#" rel="nofollow">
+                               <img style="display:inline"  src="{{asset('webFiles/customers/'~customer.getCustomerid()~"/"~customer.logo)}}" alt="{{customer.alt}}" class="width_img">
+                            </a>
+                        </div>     
+                    {%endfor%}
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                    <!-- End Swiper Clients -->
+                </div>
+            </div>
+        </div>
+
+        <!-- End Clients -->
+    <!--========== END PAGE CONTENT ==========-->
+{%endblock%}
+{%block javascripts %}
+    <script>   
+        $(document).ready(function(){
+        if($(".g-container--md ").width()<=750 ){var width=$(".g-container--md ").width()}else {var width=$(".g-container--md ").width()/5}
+            $('.bxslider').bxSlider({
+                minSlides: 3,
+                pager:false,
+                maxSlides: 5,
+                speed: 10,
+                controls: false,
+                auto: true,
+                slideWidth:width,
+                infiniteLoop:true,
+                responsive:true,
+                preventDefaultSwipeY:true
+            });          
+        });
+
+    </script>
+{%endblock %} 

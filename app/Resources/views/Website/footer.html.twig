@@ -1,0 +1,128 @@
+<footer class="g-position--relative g-bg-color--dark">
+    <!-- Links -->
+    <div class="container">
+    <div class="g-hor-divider__dashed--white-opacity-lightest">
+        <div class="container g-padding-y-80--xs">
+            <div class="row">
+                <div class="col-md-3 col-sm-12  col-xs-12">
+                    <div class="">
+                    <a href="{{path('vega_website_homepage')}}">
+                        <img id="logo-footer" class="img-responsive" src="{{asset('assets/website/img/logo.png')}}" alt="Vegagroup Logo">
+                    </a>
+                    </div>
+{#                    <div class="block-footer-p">{{vegagroup.summary|raw}}</div>#}
+                </div>
+              
+                <div class="col-md-2 sitemap-div col-sm-126 col-xs-12">
+                    <h3 class="footer-h3">Site map</h3>
+                    <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
+                        {%for page in pages%}
+                            {%if page.menuitem is not null%}
+                                {%if page.name=="A propos"%}
+                                    <li><a class="sitemap-item g-color--white-opacity" href="{{path('vega_website_aboutus')}}" >{{page.menuitem}}</a></li>
+                                {%elseif page.name=="Groupe"%}
+                                    <li><a class="sitemap-item g-color--white-opacity" href="{{path('vega_website_company')}}">{{page.menuitem}}</a></li>
+                                {%elseif page.name=="métier"%}
+                                    <li><a class="sitemap-item g-color--white-opacity" href="{{path('vega_website_job')}}">{{page.menuitem}}</a></li>
+                                {%elseif page.name=="actualites"%}
+                                    <li><a class="sitemap-item g-color--white-opacity" href="{{path('vega_website_blog')}}" >{{page.menuitem}}</a></li>
+                                {%elseif page.name=="contact"%}
+                                    <li><a class="sitemap-item g-color--white-opacity" href="{{path('vega_website_contact')}}" >{{page.menuitem}}</a></li>
+                                {%endif%}
+                            {%endif%}
+                        {%endfor%}
+                    </ul>
+                </div>
+                <div class="col-md-3 contact-div-footer col-sm-12 col-xs-12 g-margin-b-40--xs g-margin-b-0--md">
+                    <h3 class="footer-h3">Contact</h3>
+                    <a href= "mailto:{{vegagroup.email}}" class="mail">{{vegagroup.email}}</a>
+                    <p class="footer-p">{{vegagroup.address|raw}} <br/>{{vegagroup.phone}}</p>
+                </div>
+                <div class="col-md-4  col-sm-12 col-xs-12" style="padding-right: 30px">
+                    <h3 class="footer-h3">Newsletter</h3>
+                    <p class="footer-p" style="margin-bottom: 10px">{%trans%}Abonnez-vous à notre Newsletter et recevez toute l'actualité de notre Groupe{%endtrans%}.</p>
+                    <form action="{{path('vega_newsletter_form')}}" method="post">
+                        <div class="input-group">
+                            <input type="email" class="form-control input-newsletter" name="email" placeholder="{%trans%}Saisir votre adresse e-mail ici{%endtrans%}..." required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary btn-newsletter" type="submit"><i class="glyphicon glyphicon-send"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <div class="">
+                        <ul class="list-inline list-social-media">
+                            {%if vegagroup.fblink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.fblink}}">
+                                    <i class="g-padding-r-5--xs ti-facebook"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.twitterlink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.twitterlink}}">
+                                    <i class="g-padding-r-5--xs ti-twitter"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.lilink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.lilink}}">
+                                    <i class="g-padding-r-5--xs ti-linkedin"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.gmaillink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.gmaillink}}">
+                                    <i class="g-padding-r-5--xs ti-google"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.instalink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.instalink}}">
+                                    <i class="g-padding-r-5--xs ti-instagram"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.youtubelink %}
+                            <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.youtubelink}}">
+                                    <i class="g-padding-r-5--xs ti-youtube"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                            {%if vegagroup.rsslink %}
+                                 <li class="s-header__action-item">
+                                <a class="social-link" href="{{vegagroup.rsslink}}">
+                                    <i class="g-padding-r-5--xs ti-rss-alt"></i>
+                                    <span class="g-display-none--xs g-display-inline-block--sm"></span>
+                                </a>
+                            </li>
+                            {%endif%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Links -->
+
+    <!-- Copyright -->
+    <div class="container" style="padding: 20px">
+        <div class="row">
+            <div class="col-xs-12 g-text-center--xs">
+                <p class="g-color--white-opacity-light copyright-p">© 2018 Designed by <a class="vega-link" target="_blank" href="http://veganet.com.tn/">Veganet</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- End Copyright -->
+</footer>

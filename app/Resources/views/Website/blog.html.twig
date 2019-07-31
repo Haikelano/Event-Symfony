@@ -1,0 +1,57 @@
+{%extends "base.html.twig" %}
+{%block page_content %}
+        <!--========== Page Banner ==========-->
+            {{render(controller("VegaWebsiteBundle:Default:banner",{"page_name":page_name}))}}
+        <!--========== End page banner ==========-->
+        <!--========== PAGE CONTENT ==========-->
+        <div class="container g-padding-y-80--xs g-padding-y-80--sm">
+            
+            <div class="row g-overflow--hidden">
+                <div class=" col-md-12 col-xs-12 g-full-width--xs g-margin-b-30--xs g-margin-b-0--lg">
+                    {%for actuality in actualities %}
+                        <div class="col-md-12 actuality-div">
+                            <div class="col-md-4 col-sm-12 actuality-img-div">
+                                <img src="{{asset('webFiles/blog/'~actuality.id~'/'~actuality.image)}}" class="img-responsive" alt="{{actuality.alt}}"/>
+                            </div>
+                            <div class="col-md-8 col-sm-12 actuality-text-div">
+                                <p class="blog-source">{{actuality.source}} {{actuality.datedon|date("d m Y")}}</p>
+                                <h3 class="blog-title">{{actuality.title}}</h3></a>
+                                <div class="blog-summary">
+                                    {{actuality.summary|raw}}      
+                                    <div id="hidden-part-{{actuality.id}}" class="hidden-parts hidden">{{actuality.text|raw}}</div>
+                                </div>
+                                
+                                <div class="text-right">
+                                    <a id="showMore-{{actuality.id}}" onclick="showMore('{{actuality.id}}');" href="javascript:void(0);" class="showPlusBtn blog-btn">{% trans %}Voir plus {% endtrans %}
+                                        <span class="span-margin">+</span>
+                                    </a>
+                                    <a id="showLess-{{actuality.id}}" onclick="showLess('{{actuality.id}}');" href="javascript:void(0);" class="showPlusBtn  blog-btn hidden">{% trans %}Voir moins {% endtrans %}
+                                        <span class="span-margin">-</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {%endfor%}
+                </div>
+                 <div class="text-center">{{ knp_pagination_render(actualities) }}</div>
+            </div>
+        </div>
+    
+        <!--========== END PAGE CONTENT ==========-->
+{%endblock%}
+{%block javascripts %}
+    <script>
+        // on click show more button
+        function showMore(id){
+            $("#hidden-part-"+id).removeClass('hidden');
+            $("#showMore-"+id).addClass('hidden');
+            $("#showLess-"+id).removeClass('hidden');
+        }
+        // on click show less button
+        function showLess(id){
+            $("#hidden-part-"+id).addClass('hidden');
+            $("#showMore-"+id).removeClass('hidden');
+            $("#showLess-"+id).addClass('hidden');
+        }
+    </script>
+{%endblock javascripts %}

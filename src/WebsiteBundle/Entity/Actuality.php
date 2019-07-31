@@ -104,7 +104,10 @@ class Actuality
     {
         return $this->datecreate;
     }
-
+    public function __construct()
+    {
+        $this->datecreate = new \DateTime('now');
+    }
     /**
      * @param \DateTime $datecreate
      */

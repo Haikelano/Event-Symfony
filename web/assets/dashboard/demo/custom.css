@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15 mars 2018, 12:14:03
+    Author     : acer
+*/
+@font-face {
+     font-family: "Sansa Pro";
+     src: url("../../dashboard/fonts/SansaPro-Normal.otf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+     font-weight : 100;
+}
+body{
+    font-family: "Sansa Pro" !important;
+}
+
+.sidebar:after, .off-canvas-sidebar:after {
+    background: rgb(26, 50, 78);
+    
+}
+.panel-header{
+    background:#bebfc2;
+}
+.sidebar .nav li.active > a, .off-canvas-sidebar.nav li.active > a{
+    color: #293896;
+}
+.sidebar .nav li.active > a i, .off-canvas-sidebar.nav li.active > a i{
+    color: #293896;
+}
+.btn{
+        border-radius: 20px !important;
+        font-family: "Sansa Pro" !important;
+}
+.btn-primary
+{
+    background-color: rgb(53, 142, 215);
+    border-color: rgb(53, 142, 215);
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus, .btn-primary:active:hover, .btn-primary.active:focus, .btn-primary.active:hover, .show > .btn-primary.dropdown-toggle, .show > .btn-primary.dropdown-toggle:focus, .show > .btn-primary.dropdown-toggle:hover{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(53, 142, 215);
+    color: rgb(53, 142, 215) !important;
+}
+.card{
+    padding: 20px;
+}
+.deleteBtn
+{
+    color: white !important
+}
+.btn-sm{
+    font-size: 12px
+}
+.sidebar .nav p, .off-canvas-sidebar .nav p{
+    /*font-size: 12px;*/
+    /*letter-spacing: 1px;*/
+}
+legend{
+    font-size: 14px;
+    color: gray;
+}
+.card label{
+    color: gray;
+    font-size: 14px;
+}
+.fc-state-default {
+    border-color: #ed424a;
+    color: #ed424a;
+}
+.fc-state-hover {
+    color: #ed424a;
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear;
+}
+.fc-state-hover, .fc-state-down, .fc-state-active, .fc-state-disabled {
+    color: #333333;
+    background-color: #FFE3E3;
+}
+.fc-state-default {
+    border-color: #ed424a;
+    color: #ed424a;
+}
+
+.fc button.active, .fc button.active:focus, .fc button.active:hover, .fc button.btn-primary.active, .fc button.btn-primary.active:focus, .fc button.btn-primary.active:hover, .fc button.btn-primary:active, .fc button.btn-primary:active:focus, .fc button.btn-primary:active:hover, .fc button.btn-primary:focus, .fc button.btn-primary:hover, .fc button:active, .fc button:active:focus, .fc button:active:hover, .fc button:focus, .fc button:hover, .show>.fc button.btn-primary.dropdown-toggle, .show>.fc button.btn-primary.dropdown-toggle:focus, .show>.fc button.btn-primary.dropdown-toggle:hover, .show>.fc button.dropdown-toggle, .show>.fc button.dropdown-toggle:focus, .show>.fc button.dropdown-toggle:hover {
+    background-color: #ed424a;
+    color: #fff;
+    box-shadow: none;
+}
+.fc-state-active {
+    background-color: #ed424a !important;
+    color: #fff !important;
+}
+.fc button, .fc button.btn-primary {
+    border: 1px solid #ed424a;
+    background-color: #ffffff;
+    color: #ed424a
+}
+.fc button:disabled{
+    background-color: #FFE3E3;
+    border: 1px solid #FFE3E3;
+    color: #ed424a;
+}
+.fc-event .fc-bg{
+    opacity: 0;
+}
+.pagination .page-item.active>.page-link, .pagination .page-item.active>.page-link:focus, .pagination .page-item.active>.page-link:hover {
+    background-color: #358ed7;
+    border-color: #358ed7;
+}
+.btn-primary {
+
+    color: white !important;
+}
+.margin-b{
+    margin-bottom: 5px !important;
+}
+.logo{
+    padding: 43px!important;
+}
+.navbar a:not(.btn):not(.dropdown-item) {
+    color: #1a324e ;
+}
+.td_video{
+    width: 100px;
+    height: 60px;
+}
+table.dataTable>tbody>tr>td, table.dataTable>tbody>tr>th, table.dataTable>tfoot>tr>td, table.dataTable>tfoot>tr>th, table.dataTable>thead>tr>td, table.dataTable>thead>tr>th{
+    max-width: 200px !important;
+    width: auto !important;
+}
+.slide_video {
+    width: 100px;
+}
+.hidden {
+    display: none!important;
+}
+.warning {
+    color: #f0ad4e;
+}
+.success {
+    color: #5cb85c;
+}
+.sidebar .nav li.active > a i, .off-canvas-sidebar.nav li.active > a i{
+    color: #ed424a;
+}
+.margin-t{
+    margin-top: 10px;
+}
+.off-canvas-sidebar .nav li>a, .sidebar .nav li>a{padding: 3px 6px;}
