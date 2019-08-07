@@ -1,43 +1,60 @@
-{% extends 'base.html.twig' %}
 
+
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Sponsor Images list {% endblock %}
 {% block body %}
-    <h1>ImageSponsor list</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <a class="btn btn-primary pull-right" href="{{path('imagesponsor_new')}} ">Add new Image</a>
+                <div class="card-header">
+                    <div class="card-header">
+                        <h4 class="card-title"> Sponsor Images</h4>
+                        {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <span><b>Succes !</b> {{flashMessage}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-body">
+                        {%if imageSponsors  is empty %}
+                            Aucun résultat est trouvé !
+                        {%else%}
+                            <div class="table-responsive">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idimagesponsor</th>
-                <th>Name</th>
-                <th>Link</th>
-                <th>Imageprinciapl</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for imageSponsor in imageSponsors %}
-            <tr>
-                <td><a href="{{ path('imagesponsor_show', { 'id': imageSponsor.idimageSponsor }) }}">{{ imageSponsor.idimageSponsor }}</a></td>
-                <td>{{ imageSponsor.name }}</td>
-                <td>{{ imageSponsor.link }}</td>
-                <td>{% if imageSponsor.imagePrinciapl %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('imagesponsor_show', { 'id': imageSponsor.idimageSponsor }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('imagesponsor_edit', { 'id': imageSponsor.idimageSponsor }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                                <table  class="table" id="tab">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Imageprincipal</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for imageSponsor in imageSponsors %}
+                                        <tr>
+                                            <td>{{ imageSponsor.idsponsor.name }} : {{ imageSponsor.name }}</td>
+                                            <td><a href="{{ imageSponsor.link }}"><img  class="rounded" style="max-width: 100px; max-height: 100px;" src="{{ imageSponsor.link }}"/></a></td>
+                                            <td>{% if imageSponsor.imagePrinciapl %}Yes{% else %}No{% endif %}</td>
+                                            <td>
+                                                <a href="{{ path('imagesponsor_edit', { 'id': imageSponsor.idimageSponsor }) }}"class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="{{ path('imagesponsor_delete', { 'id': imageSponsor.idimageSponsor }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('imagesponsor_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

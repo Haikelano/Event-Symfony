@@ -49,8 +49,20 @@ class ImageActualityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageActuality);
             $em->flush();
-
-            return $this->redirectToRoute('imageactuality_show', array('id' => $imageActuality->getId()));
+            if($request->files->get('image')!=null)
+            {
+                if (!file_exists('webFiles/ActualityImage/'.$imageActuality->getIdimageActuality()))
+                {
+                    mkdir('webFiles/ActualityImage/'.$imageActuality->getIdimageActuality(), 0777, true);
+                }
+                $file1=$request->files->get('image');
+                $file1->move('webFiles/ActualityImage/'.$imageActuality->getIdimageActuality(),$_FILES['image']['name']
+                );
+                $imageActuality->setLink($_FILES['image']['name']);
+            }
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('flashSuccess', ' Add Image Actuality succes' );
+            return $this->redirectToRoute('imageactuality_index');
         }
 
         return $this->render('imageactuality/new.html.twig', array(
@@ -91,13 +103,13 @@ class ImageActualityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageActuality);
             $em->flush();
-
+            $this->addFlash('flashSuccess', ' Image Actuality Edit succes' );
             return $this->redirectToRoute('imageactuality_edit', array('id' => $imageActuality->getId()));
         }
 
         return $this->render('imageactuality/edit.html.twig', array(
             'imageActuality' => $imageActuality,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +117,17 @@ class ImageActualityController extends Controller
     /**
      * Deletes a ImageActuality entity.
      *
-     * @Route("/{id}", name="imageactuality_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="imageactuality_delete")
+     *
      */
-    public function deleteAction(Request $request, ImageActuality $imageActuality)
+    public function deleteAction(ImageActuality $imageActuality)
     {
-        $form = $this->createDeleteForm($imageActuality);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($imageActuality);
             $em->flush();
-        }
-
-        return $this->redirectToRoute('imageactuality_index');
+            $this->addFlash('flashSuccess', ' Image Actuality Deleted with succes' );
+            return $this->redirectToRoute('imageactuality_index');
     }
 
     /**

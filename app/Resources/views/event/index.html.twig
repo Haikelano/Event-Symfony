@@ -1,51 +1,60 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Events list {% endblock %}
 {% block body %}
-    <h1>Event list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('event_new')}} ">Add Event</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h5 class="title"> Liste of Events</h5>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if events is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
+                        <table  class="table" id="tab">
+                            <thead>
             <tr>
-                <th>Idevent</th>
                 <th>Nameevent</th>
                 <th>Lieu</th>
-                <th>Dateperiode</th>
-                <th>Idimagep</th>
                 <th>Startdate</th>
-                <th>Enddate</th>
-                <th>Mapsevent</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for event in events %}
             <tr>
-                <td><a href="{{ path('event_show', { 'id': event.idevent }) }}">{{ event.idevent }}</a></td>
                 <td>{{ event.nameevent }}</td>
                 <td>{{ event.lieu }}</td>
-                <td>{{ event.dateperiode }}</td>
-                <td>{{ event.idimagep }}</td>
                 <td>{% if event.startdate %}{{ event.startdate|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if event.enddate %}{{ event.enddate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ event.mapsevent }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('event_show', { 'id': event.idevent }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('event_edit', { 'id': event.idevent }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('event_show', { 'id': event.idevent }) }} "class="btn-width btn btn-sm btn-info "><i class="fa fa-eye"></i> View</a>
+                    <a href="{{ path('event_edit', { 'id': event.idevent }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('event_delete', { 'id': event.idevent }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('event_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

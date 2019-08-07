@@ -1,48 +1,42 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}   Hotel {%endblock%}
 {% block body %}
-    <h1>Slide</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idslide</th>
-                <td>{{ slide.idslide }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ slide.name }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ slide.type }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ slide.title }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td>{{ slide.link }}</td>
-            </tr>
-            <tr>
-                <th>Isenable</th>
-                <td>{% if slide.isenable %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('slide_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('slide_edit', { 'id': slide.idslide }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <center>
+        <div class="col-md-10">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="author">
+                        <a href="#">
+                            <img class="rounded" src="{{ imageevent.pathimage }}">
+                            <h5 class="title">{{ slide.idevent.nameevent }} : {{ slide.name }}</h5>
+                        </a>
+                        <p class="description text-center">
+                            {{ slide.title }} <i class="fa-star"></i>
+                        </p>
+
+                    </div>
+                    <p class="description text-info">
+                        type : {{ slide.type }}<br>
+                        Enabled : {% if slide.isenable %}Yes{% else %}No{% endif %} <br>
+
+
+                    </p>
+                    <center>
+                        <a href="{{ slide.link }}">
+                            Link To slide
+                        </a>
+                    </center>
+                </div>
+                <div class="card-footer">
+                    <center>
+                        <a href="{{ path('slide_edit', { 'id': slide.idslide }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{ path('slide_delete', { 'id': slide.idslide }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </center>
+
 {% endblock %}

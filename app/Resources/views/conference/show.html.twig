@@ -1,68 +1,69 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}   Actuality Images list{%endblock%}
 {% block body %}
-    <h1>Conference</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idconference</th>
-                <td>{{ conference.idconference }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ conference.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ conference.text }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
-                <td>{{ conference.job }}</td>
-            </tr>
-            <tr>
-                <th>Company</th>
-                <td>{{ conference.company }}</td>
-            </tr>
-            <tr>
-                <th>Context</th>
-                <td>{{ conference.context }}</td>
-            </tr>
-            <tr>
-                <th>Startdate</th>
-                <td>{% if conference.startdate %}{{ conference.startdate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Finishdate</th>
-                <td>{% if conference.finishdate %}{{ conference.finishdate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ conference.description }}</td>
-            </tr>
-            <tr>
-                <th>Resume</th>
-                <td>{{ conference.resume }}</td>
-            </tr>
-            <tr>
-                <th>Topics</th>
-                <td>{{ conference.topics }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-category">Conference</h5>
+                <div class="card-body">
+                    <div class="container">
+                        <output type="text" disabled class="form-control col-md-11 col-xs-12">{{ conference.text }}</output>
+                    </div>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Domain :   </strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ conference.job }}" />
+                    </label>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Company :   </strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ conference.company }}" />
+                    </label>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Context :   </strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ conference.context }}" />
+                    </label>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Start Date :</strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{% if conference.startdate %}{{ conference.startdate|date('Y-m-d') }}{% endif %}" />
+                    </label>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Finish Date :</strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{% if conference.finishdate %}{{ conference.finishdate|date('Y-m-d') }}{% endif %}" />
+                    </label>
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Topics :   </strong>
+                        <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ conference.topics }}" />
+                    </label>
+                    <div class="container">
+                    <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e">
+                        <strong>Resume :   </strong>
+                    </label>
+                    <section>
+                         {{ conference.Resume }}
+                    </section>
+                    </div>
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('conference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('conference_edit', { 'id': conference.idconference }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <center>
+                    <a href="{{ path('conference_edit', { 'id': conference.idconference }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('conference_delete', { 'id': conference.idconference }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                </center>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-user">
+            <div class="card-body">
+                <div class="author">
+                    <a href="#">
+                        <img class="avatar border-gray" src="{{ imageevent.pathimage }}">
+                        <h5 class="title">{{ conference.title }}</h5>
+                    </a>
+
+                </div>
+                <p class="description text-center">
+                    "{{ conference.description }}"
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+
 {% endblock %}

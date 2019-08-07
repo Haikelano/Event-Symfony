@@ -49,8 +49,8 @@ class ImageSponsorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageSponsor);
             $em->flush();
-
-            return $this->redirectToRoute('imagesponsor_show', array('id' => $imageSponsor->getId()));
+            $this->addFlash('flashSuccess', ' Add Image Sponsor succes' );
+            return $this->redirectToRoute('imagesponsor_index');
         }
 
         return $this->render('imagesponsor/new.html.twig', array(
@@ -91,13 +91,13 @@ class ImageSponsorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageSponsor);
             $em->flush();
-
-            return $this->redirectToRoute('imagesponsor_edit', array('id' => $imageSponsor->getId()));
+            $this->addFlash('flashSuccess', ' Edit Image Sponsor succes' );
+            return $this->redirectToRoute('imagesponsor_index');
         }
 
         return $this->render('imagesponsor/edit.html.twig', array(
             'imageSponsor' => $imageSponsor,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +105,17 @@ class ImageSponsorController extends Controller
     /**
      * Deletes a ImageSponsor entity.
      *
-     * @Route("/{id}", name="imagesponsor_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="imagesponsor_delete")
      */
-    public function deleteAction(Request $request, ImageSponsor $imageSponsor)
+    public function deleteAction( ImageSponsor $imageSponsor)
     {
-        $form = $this->createDeleteForm($imageSponsor);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($imageSponsor);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Dlete Image Sponsor succes' );
         return $this->redirectToRoute('imagesponsor_index');
+
     }
 
     /**

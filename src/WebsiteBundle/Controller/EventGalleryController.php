@@ -97,7 +97,7 @@ class EventGalleryController extends Controller
 
         return $this->render('eventgallery/edit.html.twig', array(
             'eventGallery' => $eventGallery,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +105,14 @@ class EventGalleryController extends Controller
     /**
      * Deletes a EventGallery entity.
      *
-     * @Route("/{id}", name="eventgallery_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="eventgallery_delete")
      */
-    public function deleteAction(Request $request, EventGallery $eventGallery)
+    public function deleteAction(EventGallery $eventGallery)
     {
-        $form = $this->createDeleteForm($eventGallery);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($eventGallery);
             $em->flush();
-        }
-
-        return $this->redirectToRoute('eventgallery_index');
+      return $this->redirectToRoute('eventgallery_index');
     }
 
     /**

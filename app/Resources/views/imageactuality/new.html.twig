@@ -1,16 +1,65 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %} Actuality Image creation{%endblock%}
 {% block body %}
-    <h1>ImageActuality creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Add Actuality Image</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succès !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {{ form_start(form, {'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                    <div class="form-group">
+                        {{form_label(form.name,"Name *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                 <!--   <div class="form-group">
+                        {{form_label(form.link,"Link *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.link, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        {{form_label(form.idactuality,"Actuality *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.idactuality, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.imagePrincipal, {'attr': {'class': 'form-control form-check-input col-md-11 col-xs-12'}}) }}
+                        </div>
+                        {{form_label(form.imagePrincipal,"Principal Image *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
 
-    <ul>
-        <li>
-            <a href="{{ path('imageactuality_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                    </div>
+                    <div class="">
+                        <label for="" class="control-label col-md-4 col-sm-6 col-xs-12">Actuality Image * </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="file" id="" name="image" class="form-control" required>
+                        </div>
+                    </div>
+                    {{ form_errors(form.link) }}
+
+                    <!-- Field Hidden -->
+
+                    {{ form_widget(form._token) }}
+                    <div class="col-md-12">
+                        <input type="submit" value="Create" class="btn btn-primary pull-right"/>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

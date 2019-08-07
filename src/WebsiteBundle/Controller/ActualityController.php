@@ -63,7 +63,7 @@ class ActualityController extends Controller
             $em->persist($actuality);
             $em->flush();
             $this->addFlash('flashSuccess', ' Add Actuality succes' );
-            return $this->redirectToRoute('actuality_index', array('id' => $actuality->getId()));
+            return $this->redirectToRoute('actuality_index');
         }
 
         return $this->render('actuality/new.html.twig', array(
@@ -104,13 +104,13 @@ class ActualityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($actuality);
             $em->flush();
-
-            return $this->redirectToRoute('actuality_edit', array('id' => $actuality->getId()));
+            $this->addFlash('flashSuccess', ' Edit Actuality succes' );
+            return $this->redirectToRoute('actuality_index', array('id' => $actuality->getId()));
         }
 
         return $this->render('actuality/edit.html.twig', array(
             'actuality' => $actuality,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -118,24 +118,20 @@ class ActualityController extends Controller
     /**
      * Deletes a Actuality entity.
      *
-     * @Route("/{id}", name="actuality_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="actuality_delete")
      */
-    public function deleteAction(Request $request, Actuality $actuality)
+    public function deleteAction(Actuality $actuality)
     {
-        $form = $this->createDeleteForm($actuality);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($actuality);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($actuality);
+        $em->flush();
+        $this->addFlash('flashSuccess', ' Delete Actuality succes' );
+        return $this->redirectToRoute('actuality_index', array('id' => $actuality->getId()));
 
-        return $this->redirectToRoute('actuality_index');
     }
 
-    /**
+   /**
      * Creates a form to delete a Actuality entity.
      *
      * @param Actuality $actuality The Actuality entity

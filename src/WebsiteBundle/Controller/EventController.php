@@ -49,8 +49,8 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-
-            return $this->redirectToRoute('event_show', array('id' => $event->getId()));
+            $this->addFlash('flashSuccess', ' Add Event Succes' );
+            return $this->redirectToRoute('event_index');
         }
 
         return $this->render('event/new.html.twig', array(
@@ -68,10 +68,13 @@ class EventController extends Controller
     public function showAction(Event $event)
     {
         $deleteForm = $this->createDeleteForm($event);
+        $em = $this->getDoctrine()->getManager();
+        $imagecountry =$em->getRepository('WebsiteBundle:ImageCountry')->findOneBy(array('idcountry' => $event->getIdcountry(),'imagePrincipal'=>true));
 
         return $this->render('event/show.html.twig', array(
             'event' => $event,
             'delete_form' => $deleteForm->createView(),
+            'imagecountry' => $imagecountry
         ));
     }
 
@@ -91,13 +94,13 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-
-            return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
+            $this->addFlash('flashSuccess', ' Edit Event Succes' );
+            return $this->redirectToRoute('event_index');
         }
 
         return $this->render('event/edit.html.twig', array(
             'event' => $event,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +108,16 @@ class EventController extends Controller
     /**
      * Deletes a Event entity.
      *
-     * @Route("/{id}", name="event_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="event_delete")
      */
-    public function deleteAction(Request $request, Event $event)
+    public function deleteAction(Event $event)
     {
-        $form = $this->createDeleteForm($event);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($event);
             $em->flush();
-        }
-
-        return $this->redirectToRoute('event_index');
+            $this->addFlash('flashSuccess', ' Delete Event Succes' );
+           return $this->redirectToRoute('event_index');
     }
 
     /**

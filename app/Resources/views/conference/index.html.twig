@@ -1,57 +1,58 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Conference list {% endblock %}
 {% block body %}
-    <h1>Conference list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('conference_new')}} ">Add Conference</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Liste of Conferences</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if conferences is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
+    <table  class="table" id="tab">
         <thead>
             <tr>
-                <th>Idconference</th>
                 <th>Title</th>
-                <th>Text</th>
-                <th>Job</th>
-                <th>Company</th>
-                <th>Context</th>
                 <th>Startdate</th>
                 <th>Finishdate</th>
-                <th>Description</th>
-                <th>Resume</th>
-                <th>Topics</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for conference in conferences %}
             <tr>
-                <td><a href="{{ path('conference_show', { 'id': conference.idconference }) }}">{{ conference.idconference }}</a></td>
                 <td>{{ conference.title }}</td>
-                <td>{{ conference.text }}</td>
-                <td>{{ conference.job }}</td>
-                <td>{{ conference.company }}</td>
-                <td>{{ conference.context }}</td>
                 <td>{% if conference.startdate %}{{ conference.startdate|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if conference.finishdate %}{{ conference.finishdate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ conference.description }}</td>
-                <td>{{ conference.resume }}</td>
-                <td>{{ conference.topics }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('conference_show', { 'id': conference.idconference }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('conference_edit', { 'id': conference.idconference }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('conference_show', { 'id': conference.idconference }) }} "class="btn-width btn btn-sm btn-info "><i class="fa fa-eye"></i> View</a>
+                    <a href="{{ path('conference_edit', { 'id': conference.idconference }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('conference_delete', { 'id': conference.idconference }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('conference_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+       </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -31,7 +31,7 @@ class DetailPlanning
     /**
      * @var string
      *
-     * @ORM\Column(name="time", type="string", length=45, nullable=true)
+     * @ORM\Column(name="time", type="string", length=200, nullable=true)
      */
     private $time;
 
@@ -48,13 +48,34 @@ class DetailPlanning
      * @ORM\Column(name="description", type="string", length=200, nullable=true)
      */
     private $description;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=200, nullable=true)
+     */
+    private $type;
     /**
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=100, nullable=true)
      */
     private $location;
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
     /**
      * @var string

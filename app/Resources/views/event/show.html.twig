@@ -1,56 +1,60 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}   Actuality Images list{%endblock%}
 {% block body %}
-    <h1>Event</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idevent</th>
-                <td>{{ event.idevent }}</td>
-            </tr>
-            <tr>
-                <th>Nameevent</th>
-                <td>{{ event.nameevent }}</td>
-            </tr>
-            <tr>
-                <th>Lieu</th>
-                <td>{{ event.lieu }}</td>
-            </tr>
-            <tr>
-                <th>Dateperiode</th>
-                <td>{{ event.dateperiode }}</td>
-            </tr>
-            <tr>
-                <th>Idimagep</th>
-                <td>{{ event.idimagep }}</td>
-            </tr>
-            <tr>
-                <th>Startdate</th>
-                <td>{% if event.startdate %}{{ event.startdate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Enddate</th>
-                <td>{% if event.enddate %}{{ event.enddate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Mapsevent</th>
-                <td>{{ event.mapsevent }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-category">Event</h5>
+                <div class="card-body">
 
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('event_edit', { 'id': event.idevent }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                        <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Lieu :   </strong>
+                            <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ event.lieu }}" />
+                        </label>
+
+                        <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Date  Periode :   </strong>
+                            <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ event.dateperiode }}" />
+                        </label>
+                        <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Start Date :</strong>
+                            <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{% if event.startdate %}{{ event.startdate|date('Y-m-d') }}{% endif %}" />
+                        </label>
+                        <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>End Date :</strong>
+                            <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{% if event.enddate %}{{ event.enddate|date('Y-m-d') }}{% endif %}" />
+                        </label>
+                        <label class="cm-strong control-label col-md-3 col-sm-3 col-xs-12 " style="color: #1a324e"><strong>Maps Event :</strong>
+                            <input type="text" disabled class="form-control col-md-11 col-xs-12" value="{{ event.mapsevent }}" />
+                        </label>
+                </div>
+                <div class="card-footer">
+                    <center>
+                        <a href="{{ path('event_edit', { 'id': event.idevent }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{ path('event_delete', { 'id': event.idevent }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-user">
+            <div class="card-body">
+                <div class="author">
+                    <a href="#">
+                        <img class="avatar border-gray" src="{{ imagecountry.link }}">
+                        <h5 class="title">{{ event.nameevent }}</h5>
+                    </a>
+                    <p class="description">
+                        {{ event.idcountry.name  }}
+                    </p>
+                </div>
+                <p class="description text-center">
+                    "{{ event.nameevent }} <br>
+                    will happen in  {{ event.lieu }} <br>
+                    starting from {{ event.enddate|date('Y-m-d') }}"
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

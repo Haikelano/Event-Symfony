@@ -34,6 +34,33 @@ class Planning
      * @ORM\Column(name="name", type="string", length=45, nullable=true)
      */
     private $name;
+    /**
+     * @var \Event
+     *
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_event", referencedColumnName="idevent")
+     * })
+     */
+    private $idEvent;
+
+    /**
+     * @return \Event
+     */
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
+
+    /**
+     * @param \Event $idEvent
+     */
+    public function setIdEvent($idEvent)
+    {
+        $this->idEvent = $idEvent;
+    }
+
+
 
     /**
      * @var string

@@ -49,8 +49,8 @@ class ContactController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-
-            return $this->redirectToRoute('contact_show', array('id' => $contact->getId()));
+            $this->addFlash('flashSuccess', ' Add Contact Succes' );
+            return $this->redirectToRoute('contact_index');
         }
 
         return $this->render('contact/new.html.twig', array(
@@ -91,13 +91,13 @@ class ContactController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
-
-            return $this->redirectToRoute('contact_edit', array('id' => $contact->getId()));
+            $this->addFlash('flashSuccess', ' Edit Contact Succes' );
+            return $this->redirectToRoute('contact_index');
         }
 
         return $this->render('contact/edit.html.twig', array(
             'contact' => $contact,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,19 +105,15 @@ class ContactController extends Controller
     /**
      * Deletes a Contact entity.
      *
-     * @Route("/{id}", name="contact_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="contact_delete")
      */
-    public function deleteAction(Request $request, Contact $contact)
+    public function deleteAction(Contact $contact)
     {
-        $form = $this->createDeleteForm($contact);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($contact);
             $em->flush();
-        }
+            $this->addFlash('flashSuccess', ' Delete Contact Succes' );
 
         return $this->redirectToRoute('contact_index');
     }

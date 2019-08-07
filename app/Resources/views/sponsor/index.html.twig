@@ -1,14 +1,33 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Sponsors list {% endblock %}
 {% block body %}
-    <h1>Sponsor list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('sponsor_new')}} ">Add new sponsor</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Sponsor</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if sponsors is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
+                        <table  class="table" id="tab">
+                            <thead>
             <tr>
-                <th>Idsponsor</th>
                 <th>Name</th>
-                <th>Website</th>
                 <th>Type</th>
                 <th>Contact</th>
                 <th>Actions</th>
@@ -17,29 +36,24 @@
         <tbody>
         {% for sponsor in sponsors %}
             <tr>
-                <td><a href="{{ path('sponsor_show', { 'id': sponsor.idsponsor }) }}">{{ sponsor.idsponsor }}</a></td>
-                <td>{{ sponsor.name }}</td>
-                <td>{{ sponsor.website }}</td>
+                <td><a href="{{ sponsor.website }}">{{ sponsor.idevent.nameevent }} :  {{ sponsor.name }}</a></td>
                 <td>{{ sponsor.type }}</td>
                 <td>{{ sponsor.contact }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('sponsor_show', { 'id': sponsor.idsponsor }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sponsor_edit', { 'id': sponsor.idsponsor }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('sponsor_edit', { 'id': sponsor.idsponsor }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('sponsor_delete', { 'id': sponsor.idsponsor }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('sponsor_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

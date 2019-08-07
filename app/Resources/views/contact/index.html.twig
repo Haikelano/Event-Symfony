@@ -1,61 +1,60 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Contact list {% endblock %}
 {% block body %}
-    <h1>Contact list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('contact_new')}} ">Add Contact</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Liste of Contacts</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if contacts is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idcontact</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Subject</th>
-                <th>Message</th>
-                <th>Date</th>
-                <th>Phone</th>
-                <th>Lastname</th>
-                <th>Civility</th>
-                <th>Istreated</th>
-                <th>Companyadress</th>
-                <th>Companyphone</th>
-                <th>Companymail</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td><a href="{{ path('contact_show', { 'id': contact.idcontact }) }}">{{ contact.idcontact }}</a></td>
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.subject }}</td>
-                <td>{{ contact.message }}</td>
-                <td>{% if contact.date %}{{ contact.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.lastname }}</td>
-                <td>{{ contact.civility }}</td>
-                <td>{% if contact.istreated %}Yes{% else %}No{% endif %}</td>
-                <td>{{ contact.companyadress }}</td>
-                <td>{{ contact.companyphone }}</td>
-                <td>{{ contact.companymail }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('contact_show', { 'id': contact.idcontact }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contact_edit', { 'id': contact.idcontact }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('contact_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                        <table  class="table" id="tab">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                          <tbody>
+                                {% for contact in contacts %}
+                             <tr>
+                                 <td>{{ contact.name }} {{ contact.lastname }}</td>
+                                 <td>{{ contact.email }}</td>
+                                 <td>{{ contact.phone }}</td>
+                                 <td>
+                                     <a href="{{ path('contact_show', { 'id': contact.idcontact }) }} "class="btn-width btn btn-sm btn-info "><i class="fa fa-eye"></i> View</a>
+                                     <a href="{{ path('contact_edit', { 'id': contact.idcontact }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                                     <a href="{{ path('contact_delete', { 'id': contact.idcontact }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                                 </td>
+                             </tr>
+                               {% endfor %}
+                          </tbody>
+                      </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+

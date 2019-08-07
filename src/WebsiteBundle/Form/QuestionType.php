@@ -16,7 +16,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('textQuestion')
-            ->add('createdate', 'date')
+           // ->add('createdate', 'date',array( 'attr'=>array('style'=>'display:none;')))
             ->add('status')
             ->add('textResponse')
         ;

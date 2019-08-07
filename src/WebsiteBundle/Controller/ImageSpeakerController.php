@@ -49,8 +49,8 @@ class ImageSpeakerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageSpeaker);
             $em->flush();
-
-            return $this->redirectToRoute('imagespeaker_show', array('id' => $imageSpeaker->getId()));
+            $this->addFlash('flashSuccess', ' Add Image Speaker succes' );
+            return $this->redirectToRoute('imagespeaker_index');
         }
 
         return $this->render('imagespeaker/new.html.twig', array(
@@ -91,13 +91,14 @@ class ImageSpeakerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageSpeaker);
             $em->flush();
+            $this->addFlash('flashSuccess', ' Edit Image Speaker succes' );
+            return $this->redirectToRoute('imagespeaker_index');
 
-            return $this->redirectToRoute('imagespeaker_edit', array('id' => $imageSpeaker->getId()));
         }
 
         return $this->render('imagespeaker/edit.html.twig', array(
             'imageSpeaker' => $imageSpeaker,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +106,15 @@ class ImageSpeakerController extends Controller
     /**
      * Deletes a ImageSpeaker entity.
      *
-     * @Route("/{id}", name="imagespeaker_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="imagespeaker_delete")
      */
-    public function deleteAction(Request $request, ImageSpeaker $imageSpeaker)
+    public function deleteAction(ImageSpeaker $imageSpeaker)
     {
-        $form = $this->createDeleteForm($imageSpeaker);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($imageSpeaker);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Image Speaker succes' );
         return $this->redirectToRoute('imagespeaker_index');
     }
 

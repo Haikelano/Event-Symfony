@@ -49,8 +49,10 @@ class CountryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($country);
             $em->flush();
+            $this->addFlash('flashSuccess', ' Add Country Succes' );
 
-            return $this->redirectToRoute('country_show', array('id' => $country->getId()));
+            return $this->redirectToRoute('country_index');
+
         }
 
         return $this->render('country/new.html.twig', array(
@@ -91,13 +93,15 @@ class CountryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($country);
             $em->flush();
+            $this->addFlash('flashSuccess', ' Edit Country Succes' );
 
-            return $this->redirectToRoute('country_edit', array('id' => $country->getId()));
+            return $this->redirectToRoute('country_index');
+
         }
 
         return $this->render('country/edit.html.twig', array(
             'country' => $country,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,19 +109,15 @@ class CountryController extends Controller
     /**
      * Deletes a Country entity.
      *
-     * @Route("/{id}", name="country_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="country_delete")
      */
-    public function deleteAction(Request $request, Country $country)
+    public function deleteAction(Country $country)
     {
-        $form = $this->createDeleteForm($country);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($country);
             $em->flush();
-        }
+            $this->addFlash('flashSuccess', ' Delete Country Succes' );
 
         return $this->redirectToRoute('country_index');
     }

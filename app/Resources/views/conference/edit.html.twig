@@ -1,21 +1,94 @@
-{% extends 'base.html.twig' %}
 
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} Conference Edit{%endblock%}
 {% block body %}
-    <h1>Conference edit</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Edit Conference</h4>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                    {{ form_start(form, {'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                    <div class="form-group">
+                        {{form_label(form.title,"Title *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.text,"Text *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.text, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.job,"Job *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.job, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.company,"Company *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.company, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.context,"Context *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.context, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.startdate,"Start date *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.startdate, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.finishdate,"Finish date *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.finishdate, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.description,"Description *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.resume,"Resume *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.resume, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.topics,"Topics *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.topics, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.idEvent,"Event *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.idEvent, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.idSpeaker,"Speaker *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.idSpeaker, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    {{  form_widget(form._token) }}
+                    <div class="col-md-12">
+                        <input type="submit" value="Edit"  class="btn btn-primary pull-right" />
+                    </div>
+                    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('conference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

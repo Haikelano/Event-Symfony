@@ -2,6 +2,7 @@
 
 namespace WebsiteBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,12 @@ class EventGalleryType extends AbstractType
             ->add('description')
             ->add('pathimage')
             ->add('iamgePrincipal')
-            ->add('idEvent')
+            ->add('idEvent',EntityType::class ,array(
+                'class'=>'WebsiteBundle\Entity\Event',
+                'choice_label'=>'nameevent',
+                'expanded'=>false,
+                'multiple'=>false
+            ))
         ;
     }
     

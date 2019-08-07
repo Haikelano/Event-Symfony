@@ -49,8 +49,8 @@ class TicketController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($ticket);
             $em->flush();
-
-            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+            $this->addFlash('flashSuccess', ' Add Ticket Succes' );
+            return $this->redirectToRoute('ticket_index');
         }
 
         return $this->render('ticket/new.html.twig', array(
@@ -91,13 +91,13 @@ class TicketController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($ticket);
             $em->flush();
-
-            return $this->redirectToRoute('ticket_edit', array('id' => $ticket->getId()));
+            $this->addFlash('flashSuccess', ' Edit Ticket Succes' );
+            return $this->redirectToRoute('ticket_index');
         }
 
         return $this->render('ticket/edit.html.twig', array(
             'ticket' => $ticket,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +105,16 @@ class TicketController extends Controller
     /**
      * Deletes a Ticket entity.
      *
-     * @Route("/{id}", name="ticket_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="ticket_delete")
      */
-    public function deleteAction(Request $request, Ticket $ticket)
+    public function deleteAction(Ticket $ticket)
     {
-        $form = $this->createDeleteForm($ticket);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+           $em = $this->getDoctrine()->getManager();
             $em->remove($ticket);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Ticket Succes' );
         return $this->redirectToRoute('ticket_index');
+
     }
 
     /**

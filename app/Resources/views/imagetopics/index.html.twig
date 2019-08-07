@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImageTopics list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Imagetopicsid</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imageTopic in imageTopics %}
+            <tr>
+                <td><a href="{{ path('imagetopics_show', { 'id': imageTopic.imagetopicsid }) }}">{{ imageTopic.imagetopicsid }}</a></td>
+                <td>{{ imageTopic.link }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagetopics_show', { 'id': imageTopic.imagetopicsid }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagetopics_edit', { 'id': imageTopic.imagetopicsid }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagetopics_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

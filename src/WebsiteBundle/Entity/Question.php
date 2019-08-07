@@ -64,6 +64,10 @@ class Question
         return $this->idquestion;
     }
 
+    public function __construct()
+    {
+        $this->datecreate = new \DateTime('now');
+    }
     /**
      * @param int $idquestion
      */

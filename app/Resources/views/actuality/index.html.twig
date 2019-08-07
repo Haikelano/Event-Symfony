@@ -1,5 +1,5 @@
 {% extends 'base_dashboard.html.twig' %}
- {% block title %}   <h1>Actuality list</h1>{%endblock%}
+ {% block title %}   Actuality list{%endblock%}
 {% block body %}
 
 <div class="row">
@@ -42,9 +42,9 @@
 
                                       <td>
                                           <a href="{{ path('actuality_edit', { 'id': actuality.idactuality }) }}"class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
-                                          <a href="{{ path('actuality_delete', { 'id': actuality.idactuality }) }}"class="btn-width btn btn-sm btn-danger "><i class="fa fa-edit"></i> Delete</a>
+                                          <a href="{{ path('actuality_delete', { 'id': actuality.idactuality }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                                       </td>
-                                </tr>
+                                 </tr>
         {% endfor %}
         </tbody>
     </table>

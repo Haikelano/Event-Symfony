@@ -1,10 +1,10 @@
-<div class="sidebar">
+<div class="sidebar" data-color="orange">
     <div class="logo">
         <a href="{{path('index')}}" class="simple-text logo-normal" style="text-align: center">
             <img src="{{asset('assets/dashboard/img/logo.png')}}" width="117px"/>
         </a>
     </div>
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" >
         <ul class="nav">
             <li>
                 <a href="{{path('index')}}">
@@ -16,7 +16,7 @@
                 <a data-toggle="collapse" href="#accueil" class="collapsed" >
                     <i class="fa fa-paragraph"></i>
                     <p>
-                        Accueil <b class="caret"></b>
+                        Actualities <b class="caret"></b>
                     </p>
                 </a>
                 <div class="collapse" id="accueil" style="">
@@ -24,13 +24,19 @@
                         <li id=" customer">
                             <a href="{{path('actuality_index')}}">
                                 <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
-                                <p>Liste of Events</p>
+                                <p>List of Actualities</p>
                             </a>
                         </li>      
                         <li>
-                            <a href="{{path('index')}}">
+                            <a href="{{path('imageactuality_index')}}">
                                 <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
-                                <p>Nos filiales</p>
+                                <p>Actualities Images</p>
+                            </a>
+                        </li>
+                        <li id=" customer">
+                            <a href="{{path('tag_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Tags</p>
                             </a>
                         </li>
                      
@@ -38,92 +44,228 @@
                 </div>
             </li>
             <li>
-                <a data-toggle="collapse" href="#sliders" class="collapsed" >
-                    <i class="now-ui-icons design_image"></i>
-                    <p>
-                      Photos slider <b class="caret"></b>
-                    </p>
-                </a>
-
-            </li>
-           
-            <li>
-                <a href="{{path('index',{'type':'vidéo','id':'1'})}}">
-                    <i class="fa fa-indent nav_icon"></i>
-                    <p>Vidéos slider</p>
-                </a>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#aboutus" class="collapsed" >
+                <a data-toggle="collapse" href="#Conference" class="collapsed" >
                     <i class="fa fa-paragraph"></i>
                     <p>
-                        A propos  <b class="caret"></b>
+                        Conferences <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="aboutus" style="">
-                    <ul class="nav border-white">
+                <div class="collapse" id="Conference" style="">
+                    <ul class="nav border-white" >
                         <li id=" customer">
-                            <a href="{{path('index',{'vegagroupid':'1'})}}">
+                            <a href="{{path('conference_index')}}">
                                 <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
-                                <p>A propos de nous?</p>
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="{{path('index')}}">
-                                <span class="sidebar-mini-icon"><i class="fa fa-handshake-o"></i></span>
-                                <p>Nos partenaires</p>
+                                <p>List of Conferences</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{path('index')}}">
-                                <span class="sidebar-mini-icon"><i class="fa fa-users"></i></span>
-                                <p>Membres</p>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" href="#Contact" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Contacts <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="Contact" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('contact_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Contacts</p>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li>
-                <a data-toggle="collapse" href="#Actualities" class="collapsed" >
+                <a data-toggle="collapse" href="#country" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Countries <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="country" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('country_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Countries</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('imagecountry_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
+                                <p>Countries Images</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#hotel" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Hotels <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="hotel" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('hotel_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Hotels</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('imagehotel_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
+                                <p>Hotels Images</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#newsletter" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Newsletter <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="newsletter" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('newsletter_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Newsletters</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#event" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Events <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="event" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('event_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>Liste of Events</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('eventgallery_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
+                                <p>Event Gallery</p>
+                            </a>
+                        </li>
+                        <li id=" customer">
+                            <a href="{{path('ticket_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Tickets</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" href="#question" class="collapsed" >
+                    <i class="fa fa-paragraph"></i>
+                    <p>
+                        Question <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="question" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('question_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Questions</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#sliders" class="collapsed" >
                     <i class="now-ui-icons design_image"></i>
                     <p>
-                        Actualités <b class="caret"></b>
+                      Event slides <b class="caret"></b>
                     </p>
                 </a>
+                <div class="collapse" id="sliders" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('slide_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Slides</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
             </li>
-  
             <li>
-                <a data-toggle="collapse" href="#jobs" class="collapsed" >
-                    <i class="fas fa-clipboard-list"></i>
+                <a data-toggle="collapse" href="#sponsor" class="collapsed" >
+                    <i class="now-ui-icons design_image"></i>
                     <p>
-                      Métiers <b class="caret"></b>
+                        Sponsors <b class="caret"></b>
                     </p>
                 </a>
+                <div class="collapse" id="sponsor" style="">
+                    <ul class="nav border-white" >
+                        <li id=" customer">
+                            <a href="{{path('sponsor_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                <p>List of Sponsors</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('imagesponsor_index')}}">
+                                <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
+                                <p>Image Sponsors</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </li>
+                        <li>
+                            <a data-toggle="collapse" href="#speaker" class="collapsed" >
+                                <i class="now-ui-icons design_image"></i>
+                                <p>
+                                    Speakers <b class="caret"></b>
+                                </p>
+                            </a>
+                            <div class="collapse" id="speaker" style="">
+                                <ul class="nav border-white" >
+                                    <li id=" customer">
+                                        <a href="{{path('speaker_index')}}">
+                                            <span class="sidebar-mini-icon"><i class="fa fa-file-text"></i></span>
+                                            <p>List of Speakers</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path('imagespeaker_index')}}">
+                                            <span class="sidebar-mini-icon"><i class="fas fa-building"></i></span>
+                                            <p>Image Speakers</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
 
             </li>
-            <li>
-                <a data-toggle="collapse" href="#Approches" class="collapsed" >
-                    <i class="fas fa-th"></i>
-                    <p>
-                      Approches <b class="caret"></b>
-                    </p>
-                </a>
-
-            </li>
-            <li>
-                <a href="{{path('newsletter_index')}}">
-                    <i class="fa fa-envelope-o"></i>
-                    <p>Inscriptions newsletter</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{path('contact_index')}}">
-                    <i class="fa fa-envelope-o"></i>
-                    <p>Contacts</p>
-                </a>
-            </li>
-
         </ul>
     </div>
 </div>

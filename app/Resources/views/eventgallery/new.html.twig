@@ -1,16 +1,60 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} Event Image creation{%endblock%}
 {% block body %}
-    <h1>EventGallery creation</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add Event Image</h4>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('eventgallery_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                {{ form_start(form,{'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+
+                <div class="form-group">
+                    {{form_label(form.idEvent,"Event *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.idEvent, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.name,"Name *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.location,"Location *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.location, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.description,"Description *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.pathimage,"Path Image *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.pathimage, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                       Image Principal {{ form_widget(form.iamgePrincipal, {'attr': {'class': 'form-control col-md-11 col-xs-12'}}) }}
+                    </div>
+                </div>
+                {{   form_widget(form._token) }}
+                <div class="col-md-12">
+                    <input type="submit" value="Create"  class="btn btn-primary pull-right" />
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

@@ -41,6 +41,12 @@ class Event
      * @ORM\Column(name="lieu", type="string", length=45, nullable=true)
      */
     private $lieu;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
 
     /**
      * @var string
@@ -49,13 +55,20 @@ class Event
      */
     private $dateperiode;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idimageP", type="integer", nullable=false)
-     */
-    private $idimagep;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=1000, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=45, nullable=true)
+     */
+    private $title;
     /**
      * @var \DateTime
      *
@@ -152,20 +165,54 @@ class Event
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getIdimagep()
+    public function isStatus()
     {
-        return $this->idimagep;
+        return $this->status;
     }
 
     /**
-     * @param int $idimagep
+     * @param bool $status
      */
-    public function setIdimagep($idimagep)
+    public function setStatus($status)
     {
-        $this->idimagep = $idimagep;
+        $this->status = $status;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+
 
     /**
      * @return \DateTime

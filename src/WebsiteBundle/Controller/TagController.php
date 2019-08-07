@@ -47,10 +47,11 @@ class TagController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $tag->setDatecreate(new \DateTime('now'));
             $em->persist($tag);
             $em->flush();
-
-            return $this->redirectToRoute('tag_show', array('id' => $tag->getId()));
+            $this->addFlash('flashSuccess', ' Add Tag Succes' );
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render('tag/new.html.twig', array(
@@ -91,13 +92,13 @@ class TagController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
             $em->flush();
-
-            return $this->redirectToRoute('tag_edit', array('id' => $tag->getId()));
+            $this->addFlash('flashSuccess', ' Edit Tag Succes' );
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render('tag/edit.html.twig', array(
             'tag' => $tag,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +106,16 @@ class TagController extends Controller
     /**
      * Deletes a Tag entity.
      *
-     * @Route("/{id}", name="tag_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="tag_delete")
      */
-    public function deleteAction(Request $request, Tag $tag)
+    public function deleteAction(Tag $tag)
     {
-        $form = $this->createDeleteForm($tag);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->remove($tag);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Tag Succes' );
         return $this->redirectToRoute('tag_index');
     }
 

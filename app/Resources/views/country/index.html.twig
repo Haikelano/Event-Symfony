@@ -1,39 +1,55 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Countries list {% endblock %}
 {% block body %}
-    <h1>Country list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('country_new')}} ">Add Country</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Liste of Country</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if countries is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idcountry</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for country in countries %}
-            <tr>
-                <td><a href="{{ path('country_show', { 'id': country.idcountry }) }}">{{ country.idcountry }}</a></td>
-                <td>{{ country.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('country_show', { 'id': country.idcountry }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('country_edit', { 'id': country.idcountry }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+                        <table  class="table" id="tab">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for country in countries %}
+                                <tr>
+                                    <td>{{ country.name }}</td>
+                                    <td>
+                                        <a href="{{ path('country_edit', { 'id': country.idcountry }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="{{ path('country_delete', { 'id': country.idcountry }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
         </tbody>
     </table>
+                    </div>
+ {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('country_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

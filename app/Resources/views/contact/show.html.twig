@@ -1,76 +1,68 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}   Actuality Images list{%endblock%}
 {% block body %}
-    <h1>Contact</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idcontact</th>
-                <td>{{ contact.idcontact }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ contact.name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ contact.email }}</td>
-            </tr>
-            <tr>
-                <th>Subject</th>
-                <td>{{ contact.subject }}</td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td>{{ contact.message }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{% if contact.date %}{{ contact.date|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ contact.phone }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ contact.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Civility</th>
-                <td>{{ contact.civility }}</td>
-            </tr>
-            <tr>
-                <th>Istreated</th>
-                <td>{% if contact.istreated %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Companyadress</th>
-                <td>{{ contact.companyadress }}</td>
-            </tr>
-            <tr>
-                <th>Companyphone</th>
-                <td>{{ contact.companyphone }}</td>
-            </tr>
-            <tr>
-                <th>Companymail</th>
-                <td>{{ contact.companymail }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('contact_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('contact_edit', { 'id': contact.idcontact }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-category">Contact</h5>
+                <div class="card-body">
+                    <div class="container padding-top-50">
+                        <output type="text"  class="form-control col-md-11 col-xs-12">{{ contact.name }} {{ contact.lastname }} : {{ contact.email }}</output>
+                    </div><br>
+                    <div class="container padding-top-50">
+                        <output type="text"  class="form-control col-md-11 col-xs-12">{{ contact.subject }}</output>
+                    </div><br>
+
+                    <div class="container">
+                        <textarea  disabled class="form-control col-md-11 col-xs-12">{{ contact.message }}</textarea>
+                    </div><br> <br>
+                    <div class="g-text-inherit--xs">
+                        <label data-color="grey" >   Date :      {% if contact.date %}{{ contact.date|date('Y-m-d') }}{% endif %}</label>
+                    </div><br>
+                    <div>
+                        <label class="cm-strong " style="color: #1a324e"><strong> Treated :   </strong></label>
+                        <label>{% if contact.istreated %}<i class=" glyphicon glyphicon-ok-circle" ></i> yes{% else %}<i class=" glyphicon glyphicon-remove" ></i> no{% endif %}</label>
+                    </div>
+
+                <center>
+                    <a href="{{ path('contact_edit', { 'id': contact.idcontact }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('contact_delete', { 'id': contact.idcontact }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                </center>
+
+            </div>
+        </div>
+    </div>
+    </div>
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="author">
+                        <a href="#">
+                            <img class="avatar " src="{{ asset('assets/website/img/icon-contact.png') }}">
+                            <h5 class="title">{{ contact.name }} {{ contact.lastname }}</h5>
+                        </a>
+
+                    </div>
+                    <p class="description text-info">
+
+                        Phone : {{ contact.phone }} <br>
+                        Civility : {{ contact.civility }}<br>
+                        Company Phone : {{ contact.companyphone }}<br>
+                        Company Mail : {{ contact.companymail }}<br>
+                        Company Adress : {{ contact.companyadress }}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
 {% endblock %}

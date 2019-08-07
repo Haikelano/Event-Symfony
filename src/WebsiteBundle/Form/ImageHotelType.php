@@ -5,6 +5,7 @@ namespace WebsiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ImageHotelType extends AbstractType
 {
@@ -18,7 +19,13 @@ class ImageHotelType extends AbstractType
             ->add('name')
             ->add('link')
             ->add('imagePrincipal')
-            ->add('idhotel')
+            ->add('idhotel', EntityType::class,array(
+                'class'=>'WebsiteBundle\Entity\Hotel',
+                'choice_label'=>'name',
+                'expanded'=>false,
+                'multiple'=>false
+
+            ))
         ;
     }
     

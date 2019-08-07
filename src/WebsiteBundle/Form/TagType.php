@@ -5,6 +5,7 @@ namespace WebsiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class TagType extends AbstractType
 {
@@ -16,9 +17,14 @@ class TagType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('datecreate', 'date')
+            //->add('datecreate', 'date')
             ->add('linktag')
-            ->add('idActuality')
+            ->add('idActuality',EntityType::class ,array(
+        'class'=>'WebsiteBundle\Entity\Actuality',
+        'choice_label'=>'title',
+        'expanded'=>false,
+        'multiple'=>false
+    ))
         ;
     }
     

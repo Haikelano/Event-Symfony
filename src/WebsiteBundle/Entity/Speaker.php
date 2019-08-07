@@ -34,6 +34,45 @@ class Speaker
      * @ORM\Column(name="name", type="string", length=45, nullable=true)
      */
     private $name;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @return bool
+     */
+    public function isStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return \Event
+     */
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
+
+    /**
+     * @param \Event $idEvent
+     */
+    public function setIdEvent($idEvent)
+    {
+        $this->idEvent = $idEvent;
+    }
+
 
     /**
      * @var string
@@ -42,6 +81,15 @@ class Speaker
      */
     private $lastname;
 
+    /**
+     * @var \Event
+     *
+     * @ORM\ManyToOne(targetEntity="Event")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_event", referencedColumnName="idevent")
+     * })
+     */
+    private $idEvent;
     /**
      * @var string
      *

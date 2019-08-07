@@ -1,14 +1,34 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Hotel Images list {% endblock %}
 {% block body %}
-    <h1>ImageHotel list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('imagehotel_new')}} ">Add new Image</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Countries Images</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if imageHotels  is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
+                        <table  class="table" id="tab">
+                            <thead>
             <tr>
-                <th>Idimagehotel</th>
                 <th>Name</th>
-                <th>Link</th>
+                <th>Image</th>
                 <th>Imageprincipal</th>
                 <th>Actions</th>
             </tr>
@@ -16,28 +36,23 @@
         <tbody>
         {% for imageHotel in imageHotels %}
             <tr>
-                <td><a href="{{ path('imagehotel_show', { 'id': imageHotel.idimageHotel }) }}">{{ imageHotel.idimageHotel }}</a></td>
-                <td>{{ imageHotel.name }}</td>
-                <td>{{ imageHotel.link }}</td>
+                <td>{{ imageHotel.idhotel.name }} : {{ imageHotel.name }}</td>
+                <td><a href="{{ imageHotel.link }}"><img  class="rounded" style="max-width: 100px; max-height: 100px;" src="{{ imageHotel.link }}"/></a></td>
                 <td>{% if imageHotel.imagePrincipal %}Yes{% else %}No{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('imagehotel_show', { 'id': imageHotel.idimageHotel }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('imagehotel_edit', { 'id': imageHotel.idimageHotel }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('imagehotel_edit', { 'id': imageHotel.idimageHotel }) }}"class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('imagehotel_delete', { 'id': imageHotel.idimageHotel }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+                        </table>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('imagehotel_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

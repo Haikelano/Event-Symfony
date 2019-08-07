@@ -49,8 +49,8 @@ class ImageHotelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageHotel);
             $em->flush();
-
-            return $this->redirectToRoute('imagehotel_show', array('id' => $imageHotel->getId()));
+            $this->addFlash('flashSuccess', ' Add Image Hotel succes' );
+            return $this->redirectToRoute('imagehotel_index');
         }
 
         return $this->render('imagehotel/new.html.twig', array(
@@ -91,13 +91,13 @@ class ImageHotelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageHotel);
             $em->flush();
-
-            return $this->redirectToRoute('imagehotel_edit', array('id' => $imageHotel->getId()));
+            $this->addFlash('flashSuccess', ' Edit Image Hotel succes' );
+            return $this->redirectToRoute('imagehotel_index');
         }
 
         return $this->render('imagehotel/edit.html.twig', array(
             'imageHotel' => $imageHotel,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +105,17 @@ class ImageHotelController extends Controller
     /**
      * Deletes a ImageHotel entity.
      *
-     * @Route("/{id}", name="imagehotel_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="imagehotel_delete")
      */
-    public function deleteAction(Request $request, ImageHotel $imageHotel)
+    public function deleteAction(ImageHotel $imageHotel)
     {
-        $form = $this->createDeleteForm($imageHotel);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($imageHotel);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Image Hotel succes' );
         return $this->redirectToRoute('imagehotel_index');
+
     }
 
     /**

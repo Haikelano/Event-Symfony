@@ -2,6 +2,7 @@
 
 namespace WebsiteBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,13 @@ class ImageActualityType extends AbstractType
             ->add('name')
             ->add('link')
             ->add('imagePrincipal')
-            ->add('idactuality')
+            ->add('idactuality', EntityType::class,array(
+                'class'=>'WebsiteBundle\Entity\Actuality',
+                'choice_label'=>'title',
+                'expanded'=>false,
+                'multiple'=>false
+
+            ))
         ;
     }
     

@@ -1,14 +1,34 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %}   Actuality Images list{%endblock%}
 {% block body %}
-    <h1>ImageActuality list</h1>
 
-    <table>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('imageactuality_new')}} ">Add Image</a>
+            <div class="card-header">
+                <h5 class="card-category">Images</h5>
+                <h4 class="card-title"> Liste of Actualities Images</h4>
+                {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <span><b>Succes !</b> {{flashMessage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                {%if imageActualities is empty %}
+                Aucun résultat est trouvé !
+                {%else%}
+     <div class="table-responsive">
+    <table  class="table" id="tab">
         <thead>
             <tr>
-                <th>Idimageactuality</th>
                 <th>Name</th>
-                <th>Link</th>
+                <th>Image</th>
                 <th>Imageprincipal</th>
                 <th>Actions</th>
             </tr>
@@ -16,28 +36,22 @@
         <tbody>
         {% for imageActuality in imageActualities %}
             <tr>
-                <td><a href="{{ path('imageactuality_show', { 'id': imageActuality.idimageActuality }) }}">{{ imageActuality.idimageActuality }}</a></td>
-                <td>{{ imageActuality.name }}</td>
-                <td>{{ imageActuality.link }}</td>
+                <td>{{ imageActuality.idactuality.title }} : {{ imageActuality.name }}</td>
+                <td><a href="{{ imageActuality.link }}"><img  class="rounded" style="max-width: 100px; max-height: 100px;"  src="{{ asset('assets/website/webFiles/ActualityImage/'~imageActuality.link) }}"/></a></td>
                 <td>{% if imageActuality.imagePrincipal %}Yes{% else %}No{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('imageactuality_show', { 'id': imageActuality.idimageActuality }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('imageactuality_edit', { 'id': imageActuality.idimageActuality }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('imageactuality_edit', { 'id': imageActuality.idimageActuality }) }}"class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('imageactuality_delete', { 'id': imageActuality.idimageActuality }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+     </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('imageactuality_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

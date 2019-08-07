@@ -49,8 +49,8 @@ class SlideController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($slide);
             $em->flush();
-
-            return $this->redirectToRoute('slide_show', array('id' => $slide->getId()));
+            $this->addFlash('flashSuccess', ' Add Slide Succes' );
+            return $this->redirectToRoute('slide_index');
         }
 
         return $this->render('slide/new.html.twig', array(
@@ -68,8 +68,11 @@ class SlideController extends Controller
     public function showAction(Slide $slide)
     {
         $deleteForm = $this->createDeleteForm($slide);
+        $em= $this->getDoctrine()->getManager();
+        $imageevent =$em->getRepository('WebsiteBundle:EventGallery')->findOneBy(array('idEvent' => $slide->getIdEvent(),'iamgePrincipal'=>true));
 
         return $this->render('slide/show.html.twig', array(
+            'imageevent'=>$imageevent,
             'slide' => $slide,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,13 +94,13 @@ class SlideController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($slide);
             $em->flush();
-
-            return $this->redirectToRoute('slide_edit', array('id' => $slide->getId()));
+            $this->addFlash('flashSuccess', ' Edit Question Succes' );
+            return $this->redirectToRoute('slide_index');
         }
 
         return $this->render('slide/edit.html.twig', array(
             'slide' => $slide,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +108,14 @@ class SlideController extends Controller
     /**
      * Deletes a Slide entity.
      *
-     * @Route("/{id}", name="slide_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="slide_delete")
      */
-    public function deleteAction(Request $request, Slide $slide)
+    public function deleteAction(Slide $slide)
     {
-        $form = $this->createDeleteForm($slide);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($slide);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Slide Succes' );
         return $this->redirectToRoute('slide_index');
     }
 

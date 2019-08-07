@@ -47,10 +47,11 @@ class QuestionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $question->setCreatedate( new \DateTime('now'));
             $em->persist($question);
             $em->flush();
-
-            return $this->redirectToRoute('question_show', array('id' => $question->getId()));
+            $this->addFlash('flashSuccess', ' Add Question Succes' );
+            return $this->redirectToRoute('question_index');
         }
 
         return $this->render('question/new.html.twig', array(
@@ -91,13 +92,13 @@ class QuestionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
-
-            return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
+            $this->addFlash('flashSuccess', ' Edit Question Succes' );
+            return $this->redirectToRoute('question_index');
         }
 
         return $this->render('question/edit.html.twig', array(
             'question' => $question,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +106,14 @@ class QuestionController extends Controller
     /**
      * Deletes a Question entity.
      *
-     * @Route("/{id}", name="question_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="question_delete")
      */
-    public function deleteAction(Request $request, Question $question)
+    public function deleteAction(Question $question)
     {
-        $form = $this->createDeleteForm($question);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($question);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Question Succes' );
         return $this->redirectToRoute('question_index');
     }
 

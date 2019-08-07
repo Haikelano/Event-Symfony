@@ -1,21 +1,88 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} Conference edit{%endblock%}
 {% block body %}
-    <h1>Contact edit</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Edit Contact</h4>
+                    {{form_start(form ,{'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                    <div class="form-group">
+                        {{form_label(form.name,"First Name *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.lastname,"Last Neme *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.lastname, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.email,"Email *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.subject,"Subject *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.subject, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.message,"Message *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.message, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.date,"Date *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.date, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.phone,"Phone *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.phone, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.civility,"Civility *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.civility, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.companyadress,"Company Adress *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.companyadress, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.companymail,"Company Mail *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.companymail, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.companyphone,"Company Phone *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.companyphone, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    {{  form_widget(form._token) }}
+                    <div class="col-md-12">
+                        <input type="submit" value="Create"  class="btn btn-primary pull-right" />
+                    </div>
+                    {{ form_end(form) }}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('contact_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}

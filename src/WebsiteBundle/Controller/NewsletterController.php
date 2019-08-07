@@ -49,8 +49,8 @@ class NewsletterController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($newsletter);
             $em->flush();
-
-            return $this->redirectToRoute('newsletter_show', array('id' => $newsletter->getId()));
+            $this->addFlash('flashSuccess', ' Add Newsletter Succes' );
+            return $this->redirectToRoute('newsletter_index');
         }
 
         return $this->render('newsletter/new.html.twig', array(
@@ -91,13 +91,13 @@ class NewsletterController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($newsletter);
             $em->flush();
-
-            return $this->redirectToRoute('newsletter_edit', array('id' => $newsletter->getId()));
+            $this->addFlash('flashSuccess', ' Edit Newsletter Succes' );
+            return $this->redirectToRoute('newsletter_index');
         }
 
         return $this->render('newsletter/edit.html.twig', array(
             'newsletter' => $newsletter,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +105,14 @@ class NewsletterController extends Controller
     /**
      * Deletes a Newsletter entity.
      *
-     * @Route("/{id}", name="newsletter_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="newsletter_delete")
      */
-    public function deleteAction(Request $request, Newsletter $newsletter)
+    public function deleteAction(Newsletter $newsletter)
     {
-        $form = $this->createDeleteForm($newsletter);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($newsletter);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Newsletter Succes' );
         return $this->redirectToRoute('newsletter_index');
     }
 

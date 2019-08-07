@@ -49,8 +49,8 @@ class HotelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
             $em->flush();
-
-            return $this->redirectToRoute('hotel_show', array('id' => $hotel->getId()));
+            $this->addFlash('flashSuccess', ' Add Hotel Succes' );
+            return $this->redirectToRoute('hotel_index');
         }
 
         return $this->render('hotel/new.html.twig', array(
@@ -68,8 +68,11 @@ class HotelController extends Controller
     public function showAction(Hotel $hotel)
     {
         $deleteForm = $this->createDeleteForm($hotel);
+        $em = $this->getDoctrine()->getManager();
+        $imagehotel =$em->getRepository('WebsiteBundle:ImageHotel')->findOneBy(array('idhotel' => $hotel->getIdhotel(),'imagePrincipal'=>true));
 
         return $this->render('hotel/show.html.twig', array(
+            'imagehotel'=>$imagehotel,
             'hotel' => $hotel,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,13 +94,13 @@ class HotelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
             $em->flush();
-
-            return $this->redirectToRoute('hotel_edit', array('id' => $hotel->getId()));
+            $this->addFlash('flashSuccess', ' Edit Hotel Succes' );
+            return $this->redirectToRoute('hotel_index');
         }
 
         return $this->render('hotel/edit.html.twig', array(
             'hotel' => $hotel,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +108,16 @@ class HotelController extends Controller
     /**
      * Deletes a Hotel entity.
      *
-     * @Route("/{id}", name="hotel_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="hotel_delete")
      */
-    public function deleteAction(Request $request, Hotel $hotel)
+    public function deleteAction(Hotel $hotel)
     {
-        $form = $this->createDeleteForm($hotel);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
             $em->remove($hotel);
             $em->flush();
-        }
 
+
+        $this->addFlash('flashSuccess', ' Delete Hotel Succes' );
         return $this->redirectToRoute('hotel_index');
     }
 

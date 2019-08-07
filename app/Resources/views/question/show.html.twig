@@ -1,44 +1,32 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}   Question {%endblock%}
 {% block body %}
-    <h1>Question</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idquestion</th>
-                <td>{{ question.idquestion }}</td>
-            </tr>
-            <tr>
-                <th>Textquestion</th>
-                <td>{{ question.textQuestion }}</td>
-            </tr>
-            <tr>
-                <th>Createdate</th>
-                <td>{% if question.createdate %}{{ question.createdate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ question.status }}</td>
-            </tr>
-            <tr>
-                <th>Textresponse</th>
-                <td>{{ question.textResponse }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-category">Question</h5>
+                <div class="card-body">
+                    <div class="container  " style="font-size: small">
+                          *Question status : {{ question.status }}
+                    </div><br>
+                    <div class="container  " style="font-size: small">
+                         *Created : {% if question.createdate %}{{ question.createdate|date('Y-m-d') }}{% endif %}
+                    </div><br>
+                    <div class="container">
+                        <output type="text" disabled class="form-control col-md-11 col-xs-12"><strong>{{ question.textQuestion }}</strong></output>
+                    </div>
+                    <section class="section-story-overview">
+                        {{ question.textResponse }}
+                    </section>
 
-    <ul>
-        <li>
-            <a href="{{ path('question_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('question_edit', { 'id': question.idquestion }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <center>
+                        <a href="{{ path('question_edit', { 'id': question.idquestion }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{ path('question_delete', { 'id': question.idquestion }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -49,8 +49,8 @@ class SponsorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($sponsor);
             $em->flush();
-
-            return $this->redirectToRoute('sponsor_show', array('id' => $sponsor->getId()));
+            $this->addFlash('flashSuccess', ' Add Sponsor Succes' );
+            return $this->redirectToRoute('sponsor_index');
         }
 
         return $this->render('sponsor/new.html.twig', array(
@@ -91,13 +91,13 @@ class SponsorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($sponsor);
             $em->flush();
-
-            return $this->redirectToRoute('sponsor_edit', array('id' => $sponsor->getId()));
+            $this->addFlash('flashSuccess', ' Add Sponsor Succes' );
+            return $this->redirectToRoute('sponsor_index');
         }
 
         return $this->render('sponsor/edit.html.twig', array(
             'sponsor' => $sponsor,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +105,14 @@ class SponsorController extends Controller
     /**
      * Deletes a Sponsor entity.
      *
-     * @Route("/{id}", name="sponsor_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="sponsor_delete")
      */
-    public function deleteAction(Request $request, Sponsor $sponsor)
+    public function deleteAction(Sponsor $sponsor)
     {
-        $form = $this->createDeleteForm($sponsor);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($sponsor);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Sponsor Succes' );
         return $this->redirectToRoute('sponsor_index');
     }
 

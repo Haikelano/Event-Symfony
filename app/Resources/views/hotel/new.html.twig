@@ -1,16 +1,58 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} Event Image creation{%endblock%}
 {% block body %}
-    <h1>Hotel creation</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add New Hotel</h4>
+                 {{ form_start(form,{'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                <div class="form-group">
+                    {{form_label(form.name,"Neme *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.nbstars,"Number of stars *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.nbstars, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.description,"Description *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.distanceevent,"Distance Event *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.distanceevent, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.linkhotel,"Hotel Link *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.linkhotel, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form_label(form.idEvent,"Event *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        {{ form_widget(form.idEvent, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                    </div>
+                </div>
+                {{   form_widget(form._token) }}
+                <div class="col-md-12">
+                    <input type="submit" value="Create"  class="btn btn-primary pull-right" />
+                </div>
+                {{ form_end(form) }}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('hotel_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
 {% endblock %}

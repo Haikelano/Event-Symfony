@@ -5,7 +5,7 @@ namespace WebsiteBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use  Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class SlideType extends AbstractType
 {
     /**
@@ -20,7 +20,12 @@ class SlideType extends AbstractType
             ->add('title')
             ->add('link')
             ->add('isenable')
-            ->add('idEvent')
+            ->add('idEvent',EntityType::class ,array(
+                'class'=>'WebsiteBundle\Entity\Event',
+                'choice_label'=>'nameevent',
+                'expanded'=>false,
+                'multiple'=>false
+            ))
         ;
     }
     

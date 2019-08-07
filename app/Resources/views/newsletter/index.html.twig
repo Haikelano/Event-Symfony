@@ -1,12 +1,32 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_dashboard.html.twig' %}
+{% block title %}Events list {% endblock %}
 {% block body %}
-    <h1>Newsletter list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <a class="btn btn-primary pull-right" href="{{path('newsletter_new')}} ">Add new hotel</a>
+            <div class="card-header">
+                <div class="card-header">
+                    <h4 class="card-title"> Newsletter</h4>
+                    {% for flashMessage in app.session.flashbag.get('flashSuccess') %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <span><b>Succes !</b> {{flashMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="card-body">
+                    {%if newsletters is empty %}
+                    Aucun résultat est trouvé !
+                    {%else%}
+                    <div class="table-responsive">
 
-    <table>
-        <thead>
+                        <table  class="table" id="tab">
+                            <thead>
             <tr>
-                <th>Idnewsletter</th>
                 <th>Email</th>
                 <th>Istreated</th>
                 <th>Actions</th>
@@ -15,27 +35,21 @@
         <tbody>
         {% for newsletter in newsletters %}
             <tr>
-                <td><a href="{{ path('newsletter_show', { 'id': newsletter.idnewsletter }) }}">{{ newsletter.idnewsletter }}</a></td>
                 <td>{{ newsletter.email }}</td>
                 <td>{% if newsletter.istreated %}Yes{% else %}No{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('newsletter_show', { 'id': newsletter.idnewsletter }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('newsletter_edit', { 'id': newsletter.idnewsletter }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('newsletter_edit', { 'id': newsletter.idnewsletter }) }} "class="btn-width btn btn-sm btn-primary "><i class="fa fa-edit"></i> Edit</a>
+                    <a href="{{ path('newsletter_delete', { 'id': newsletter.idnewsletter }) }}" data-confirm="are you sure you want to delete this?" class="btn-width btn btn-sm btn-danger deleteBtn"><i class="fa fa-times"></i> Delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('newsletter_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,21 +1,40 @@
-{% extends 'base.html.twig' %}
 
+{% extends 'base_dashboard.html.twig' %}
+ {% block title %} Sponsor Creation{%endblock%}
 {% block body %}
-    <h1>Tag edit</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Add New Sponsor</h4>
+                    {{ form_start(form,{'attr':{'enctype':'multipart/form-data','method':'POST','class':'form-horizontal form-label-left myform'}}) }}
+                    <div class="form-group">
+                        {{form_label(form.name,"Name *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.linktag,"Link *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.linktag, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{form_label(form.idActuality,"Actuality *",{'label_attr': {'class': 'control-label col-md-3 col-sm-3 col-xs-12'}})}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.idActuality, {'attr': {'class': 'form-control col-md-11 col-xs-12','required':'required'}}) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form._token) }}
+                    <div class="col-md-12">
+                        <input type="submit" value="Edit" class="btn btn-primary pull-right"/>
+                    </div>
+                    {{ form_end(form) }}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('tag_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

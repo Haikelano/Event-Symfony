@@ -49,8 +49,8 @@ class ImageCountryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageCountry);
             $em->flush();
-
-            return $this->redirectToRoute('imagecountry_show', array('id' => $imageCountry->getId()));
+            $this->addFlash('flashSuccess', ' Add Image Country succes' );
+            return $this->redirectToRoute('imagecountry_index');
         }
 
         return $this->render('imagecountry/new.html.twig', array(
@@ -91,13 +91,13 @@ class ImageCountryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($imageCountry);
             $em->flush();
-
-            return $this->redirectToRoute('imagecountry_edit', array('id' => $imageCountry->getId()));
+            $this->addFlash('flashSuccess', ' Edit Image Country succes' );
+            return $this->redirectToRoute('imagecountry_index');
         }
 
         return $this->render('imagecountry/edit.html.twig', array(
             'imageCountry' => $imageCountry,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,20 +105,15 @@ class ImageCountryController extends Controller
     /**
      * Deletes a ImageCountry entity.
      *
-     * @Route("/{id}", name="imagecountry_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="imagecountry_delete")
      */
-    public function deleteAction(Request $request, ImageCountry $imageCountry)
+    public function deleteAction(ImageCountry $imageCountry)
     {
-        $form = $this->createDeleteForm($imageCountry);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($imageCountry);
             $em->flush();
-        }
-
+        $this->addFlash('flashSuccess', ' Delete Image Country succes' );
         return $this->redirectToRoute('imagecountry_index');
     }
 

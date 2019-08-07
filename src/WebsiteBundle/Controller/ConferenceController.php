@@ -49,8 +49,8 @@ class ConferenceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($conference);
             $em->flush();
-
-            return $this->redirectToRoute('conference_show', array('id' => $conference->getId()));
+            $this->addFlash('flashSuccess', ' Add Conference succes' );
+            return $this->redirectToRoute('conference_index');
         }
 
         return $this->render('conference/new.html.twig', array(
@@ -68,10 +68,14 @@ class ConferenceController extends Controller
     public function showAction(Conference $conference)
     {
         $deleteForm = $this->createDeleteForm($conference);
+        $em = $this->getDoctrine()->getManager();
+        $imageevent =$em->getRepository('WebsiteBundle:EventGallery')->findOneBy(array('idEvent' => $conference->getIdEvent(),'iamgePrincipal'=>true));
+
 
         return $this->render('conference/show.html.twig', array(
+            'imageevent'=>$imageevent,
             'conference' => $conference,
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
     }
 
@@ -91,13 +95,13 @@ class ConferenceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($conference);
             $em->flush();
-
-            return $this->redirectToRoute('conference_edit', array('id' => $conference->getId()));
+            $this->addFlash('flashSuccess', ' Edit Conference Succes' );
+            return $this->redirectToRoute('conference_index');
         }
 
         return $this->render('conference/edit.html.twig', array(
             'conference' => $conference,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -105,21 +109,18 @@ class ConferenceController extends Controller
     /**
      * Deletes a Conference entity.
      *
-     * @Route("/{id}", name="conference_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="conference_delete")
      */
-    public function deleteAction(Request $request, Conference $conference)
+    public function deleteAction(Conference $conference)
     {
-        $form = $this->createDeleteForm($conference);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($conference);
             $em->flush();
-        }
+            $this->addFlash('flashSuccess', ' Delete Conference succes' );
+            return $this->redirectToRoute('conference_index');
 
-        return $this->redirectToRoute('conference_index');
+
     }
 
     /**
